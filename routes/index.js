@@ -3,7 +3,7 @@ var router = express.Router();
 const Reloj = require('../models/reloj')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/product', function(req, res, next) {
 
   Reloj.find({}, (err, data) => {
     if (err) 
