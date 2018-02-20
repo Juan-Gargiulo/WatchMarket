@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import App from '../src/Containers/App'
+//import App from '../src/Containers/App'
 import registerServiceWorker from './registerServiceWorker';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -42,6 +42,14 @@ injectGlobal`
         font-family: Roboto;
     }
 `
+
+class App extends Component {
+    render(){
+        return(
+            <h1>La puta que te pario</h1>
+        )
+    }
+}
 
 ReactDOM.render(
     <Provider store={store}>
