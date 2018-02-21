@@ -3,16 +3,6 @@ var router = express.Router();
 //const Reloj = require('../models/reloj')
 
 
-router.get('/', function(req, res, next) {
-
-  /*   Reloj.find({}, (err, data) => {
-      if (err) 
-        console.log(err);
-  
-      }) */
-      res.json([{"_id":"5a84b080fcd83e2ee718418e","name":"hola","__v":0},{"_id":"5a84bedbc65ee23da6143517","name":"rolex3","__v":0}]);
-});
-
 /* GET home page. */
 router.get('/product', function(req, res, next) {
 
