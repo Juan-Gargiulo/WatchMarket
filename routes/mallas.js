@@ -14,7 +14,8 @@ router.get('/mallas', (req, res,next) => {
 
 // get by type
 router.get('/mallas/:type',(req,res,next)=> {
-  malla.find({"type":req.params.type},function(err,mallas){
+  const type = req.params.type
+  malla.find({type: type},function(err,mallas){
     if(err)
       res.send(err);
     res.json(mallas);
