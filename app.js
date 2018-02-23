@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //mongodb
-//const db = require('./models/db')
+const db = require('./models/db')
 
 var mallas = require('./routes/mallas');
 var pilas = require('./routes/pilas')
@@ -17,8 +17,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-console.log("var:", process.env.MONGODB_URI);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

@@ -4,6 +4,7 @@ const malla = require('../models/malla')
 
 // get all
 router.get('/mallas', (req, res,next) => { 
+  console.log("var:", process.env.MONGODB_URI);
   malla.find({},function(err,mallas){
     if(err){
       res.send(err)
@@ -31,7 +32,7 @@ router.get('/mallasi/:_id',(req,res)=> {
   })
 })
 
-router.post('/mallas',(req,res)=>{
+router.post('/mallasp',(req,res)=>{
 
 
   const m = new malla({
