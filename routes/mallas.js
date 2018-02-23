@@ -31,4 +31,17 @@ router.get('/mallasi/:_id',(req,res)=> {
   })
 })
 
+router.post('/mallas',(req,res)=>{
+
+  console.log("okkkkkkkaksdkasdlofkcwofkcweofkcweor");
+  console.log("var:", process.env.MONGODB_URI);
+  const m = new malla({
+    type: "aaa",
+  })
+  m.save((err,updatedm)=>{
+    if(err) console.log(err)
+    res.send(updatedm)
+  })
+
+})
 module.exports = router;

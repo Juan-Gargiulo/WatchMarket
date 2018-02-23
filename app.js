@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 
 var mallas = require('./routes/mallas');
 var pilas = require('./routes/pilas')
-var abmMallas = require('./routes/abms/abmMallas');
+//var abmMallas = require('./routes/abms/abmMallas');
 
 var app = express();
 
@@ -26,18 +26,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-<<<<<<< HEAD
-app.use('/api', index);
+
+app.use('/api', mallas);
+app.use('/api', pilas);
+//app.use('/admin',abmMallas);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
-=======
-app.use('/api', mallas);
-app.use('/api', pilas);
-app.use('/admin',abmMallas);
->>>>>>> 9b4f7f5b97ae9b14deae818b4554be637d250964
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

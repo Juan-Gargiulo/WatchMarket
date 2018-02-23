@@ -1,2 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/watchmarket');
+console.log("aaa" + process.env.MONGOLAB_URI);
+var url = process.env.MONGODB_URI;
+mongoose.connect(url);
