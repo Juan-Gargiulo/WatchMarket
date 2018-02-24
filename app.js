@@ -6,11 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //mongodb
-//const db = require('./models/db')
+const db = require('./models/db')
 
 var mallas = require('./routes/mallas');
 var pilas = require('./routes/pilas')
-var abmMallas = require('./routes/abms/abmMallas');
+//var abmMallas = require('./routes/abms/abmMallas');
 
 var app = express();
 
@@ -26,9 +26,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+
 app.use('/api', mallas);
 app.use('/api', pilas);
-app.use('/admin',abmMallas);
+//app.use('/admin',abmMallas);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/client/build/index.html'));

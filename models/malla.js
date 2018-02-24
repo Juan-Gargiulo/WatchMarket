@@ -14,7 +14,7 @@ var MallaSchema = new Schema({
   cantidad:Number
 });
 
-var Malla = mongoose.model('Malla', MallaSchema);
+var Malla = mongoose.model('mallas', MallaSchema);
 
 // make this available to our users in our Node applications
 module.exports = Malla;
