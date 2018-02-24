@@ -1,7 +1,16 @@
 var express = require('express');
 var router = express.Router();
-const malla = require('../models/malla')
 
+var cloudinaryConfig = require('../config/cloudinaryCong.json')
+var Cloudinary = require('cloudinary');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' })
+
+
+Cloudinary.config(cloudinaryConfig);
+
+const malla = require('../models/malla')
+ 
 // get all
 router.get('/mallas', (req, res,next) => { 
   console.log("var:", process.env.MONGODB_URI);
@@ -33,16 +42,19 @@ router.get('/mallasi/:_id',(req,res)=> {
   })
 })
 
-router.post('/mallasp',(req,res)=>{
+router.post('/mallas', upload.single('images') ,(req,res)=>{
 
+  Cloudinary.v2.uploader.upload(req.file.path, function(err,result) {
+      if(err) console.log(err)
+      console.log(result)
 
-  const m = new malla({
-    type: "aaa",
+      //en result tenes la url de la imagen, guardala en imageUrl del modelo
   })
-  m.save((err,updatedm)=>{
-    if(err) console.log(err)
-    res.send(updatedm)
-  })
+
 
 })
+
+
+
+
 module.exports = router;
