@@ -10,7 +10,10 @@ var PilaSchema = new Schema({
     origin: String,
     description: String,
     Price_Dolar: Number,
-    Price_Args: Number
+    Price_Args: Number,
+    cantidad:Number,
+    baja:Boolean,
+    imgUrl: String
 })
 
 var Pila = mongoose.model('Pila',PilaSchema);
