@@ -1,4 +1,3 @@
-import { Stream } from 'stream';
 
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -13,7 +12,6 @@ var MallaSchema = new Schema({
   description: String,
   Price_Dolar: Number,
   Price_Args: Number,
-  cantidad:Number,
   baja:Boolean,
   imgUrl: String
 });
