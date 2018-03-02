@@ -1,60 +1,83 @@
 var express = require('express');
 var router = express.Router();
-
 var cloudinaryConfig = require('../config/cloudinaryCong.json')
 var Cloudinary = require('cloudinary');
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' })
-
-
 Cloudinary.config(cloudinaryConfig);
 
-const malla = require('../models/malla')
- 
-// get all
+const malla = require('../models/malla');
+
+// READ ALL
 router.get('/mallas', (req, res,next) => { 
-  console.log("var:", process.env.MONGODB_URI);
-  malla.find({},function(err,mallas){
-    if(err){
-      res.send(err)
-    }
-    res.json(mallas);
+  malla.find({},function(err,response){
+    if(err) res.status(500).json(err);
+    res.status(200).json(response);
+  });
+});
+
+// READ BY TYPE
+router.get('/mallas/:type',(req,res,next)=> {
+  malla.find({type: req.params.type},function(err,response){
+    if(err) res.status(500).json(err);
+    res.status(200).json(response);
+  })
+})
+
+// CREATE
+router.post('/mallas', upload.single('images') ,(req,res)=>{
+  var img;
+  Cloudinary.v2.uploader.upload(req.file.path, function(err,result) { 
+    if(err) res.status(500).json(err);
+    res.status(200).json(result); 
+    img = result; 
+  })
+  var nuevaMalla = malla({
+    type: req.body.type,
+    subtype: req.body.subtype,
+    code: req.body.code,
+    length: req.body.length,
+    color: req.body.color,
+    origin: req.body.origin,
+    description: req.body.description,
+    Price_Dolar: req.body.Price_Dolar,
+    Price_Args: req.body.Price_Args,
+    baja: false,
+    imgUrl: img    
+  });
+  nuevaMalla.save(function(err,response){
+    if(err) res.status(500).json(err);
+    res.status(200).json(response);
+  })
+});
+
+// UPDATE
+router.put('/mallas/:_id',upload.single('images') ,(req,res)=>{
+  // UPDATE DE IMG URL EN EL SERVIDOR DE IMAGENES
+  const oldimgUrl = malla.find({_id : id },{imgUrl:1 , _id:0});
+  if(oldimgUrl != req.params.imgUrl){
+    Cloudinary.v2.uploader.upload(req.file.path,(err,result)=>{
+      if(err) res.status(500).json(err);
+      res.status(200).json(result);
+    })
+  }
+  var nuevaMalla = new malla({
+      type: req.body.type,
+      subtype: req.body.subtype,
+      code: req.body.code,
+      length: req.body.length,
+      color: req.body.color,
+      origin: req.body.origin,
+      description: req.body.description,
+      Price_Dolar: req.body.Price_Dolar,
+      Price_Args: req.body.Price_Args,
+      baja: req.body.baja,
+      imgUrl: req.body.imgUrl      
+  });
+  malla.findByIdAndUpdate(req.params._id, {$set:nuevaMalla}, function(err, response) {
+    if(err) res.status(500).json(err);
+    res.status(200).json(response);
   });
 })
-
-// get by type
-router.get('/mallas/:type',(req,res,next)=> {
-  const type = req.params.type
-  malla.find({type: type},function(err,mallas){
-    if(err)
-      res.send(err);
-    res.json(mallas);
-  })
-})
-
-// get by id
-// LE AGREGUE ESE "i" en la route xq se me confundia con el de arriba
-router.get('/mallasi/:_id',(req,res)=> {
-  malla.findById(req.params._id,function(err,mallas){
-    if(err)
-      res.send(err);
-    res.json(mallas);
-  })
-})
-
-router.post('/mallas', upload.single('images') ,(req,res)=>{
-
-  Cloudinary.v2.uploader.upload(req.file.path, function(err,result) {
-      if(err) console.log(err)
-      console.log(result)
-
-      //en result tenes la url de la imagen, guardala en imageUrl del modelo
-  })
-
-
-})
-
-
-
 
 module.exports = router;
