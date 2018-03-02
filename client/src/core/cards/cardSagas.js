@@ -16,7 +16,7 @@ function* getProducts() {
        yield put( setProducts(products) );
 
     } catch (e) {
-       console.log(e.message)
+       console.log(e.message);
     }
  }
 

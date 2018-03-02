@@ -9,10 +9,10 @@ var PilaSchema = new Schema({
     brand: String,
     origin: String,
     description: String,
-    Price_Dolar: Number,
-    Price_Args: Number,
-    baja:Boolean,
-    imgUrl: String
+    price_dolar: Number,
+    price_args: Number,
+    active:Boolean,
+    imgurl: String
 })
 
 var Pila = mongoose.model('Pila',PilaSchema);

@@ -40,10 +40,10 @@ router.post('/mallas', upload.single('images') ,(req,res)=>{
     color: req.body.color,
     origin: req.body.origin,
     description: req.body.description,
-    Price_Dolar: req.body.Price_Dolar,
-    Price_Args: req.body.Price_Args,
-    baja: false,
-    imgUrl: img    
+    price_dolar: req.body.price_dolar,
+    price_args: req.body.price_args,
+    active: true,
+    imgurl: img    
   });
   nuevaMalla.save(function(err,response){
     if(err) res.status(500).json(err);
@@ -54,11 +54,13 @@ router.post('/mallas', upload.single('images') ,(req,res)=>{
 // UPDATE
 router.put('/mallas/:_id',upload.single('images') ,(req,res)=>{
   // UPDATE DE IMG URL EN EL SERVIDOR DE IMAGENES
+  const img;
   const oldimgUrl = malla.find({_id : id },{imgUrl:1 , _id:0});
   if(oldimgUrl != req.params.imgUrl){
     Cloudinary.v2.uploader.upload(req.file.path,(err,result)=>{
       if(err) res.status(500).json(err);
       res.status(200).json(result);
+      img = result;
     })
   }
   var nuevaMalla = new malla({
@@ -69,10 +71,10 @@ router.put('/mallas/:_id',upload.single('images') ,(req,res)=>{
       color: req.body.color,
       origin: req.body.origin,
       description: req.body.description,
-      Price_Dolar: req.body.Price_Dolar,
-      Price_Args: req.body.Price_Args,
-      baja: req.body.baja,
-      imgUrl: req.body.imgUrl      
+      price_dolar: req.body.price_dolar,
+      price_args: req.body.price_args,
+      active: req.body.active,
+      imgurl: img      
   });
   malla.findByIdAndUpdate(req.params._id, {$set:nuevaMalla}, function(err, response) {
     if(err) res.status(500).json(err);

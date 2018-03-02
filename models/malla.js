@@ -10,10 +10,10 @@ var MallaSchema = new Schema({
   color: String,
   origin: String,
   description: String,
-  Price_Dolar: Number,
-  Price_Args: Number,
-  baja:Boolean,
-  imgUrl: String
+  price_dolar: Number,
+  price_args: Number,
+  active:Boolean,
+  imgurl: String
 });
 
 var Malla = mongoose.model('mallas', MallaSchema);
