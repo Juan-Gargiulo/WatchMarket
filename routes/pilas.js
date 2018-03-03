@@ -54,7 +54,7 @@ router.post('/pilas', upload.single('images') ,(req,res)=>{
 // UPDATE
 router.put('/pilas/:_id',upload.single('images'),(req,res)=>{  
     // UPDATE DE IMG URL EN EL SERVIDOR DE IMAGENES
-    const img;
+    const img = "";
     const oldimgUrl = pila.find({_id : id },{imgUrl:1 , _id:0});
     if(oldimgUrl != req.params.imgUrl){
       Cloudinary.v2.uploader.upload(req.file.path,(err,result)=>{
