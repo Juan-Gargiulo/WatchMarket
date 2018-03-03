@@ -30,24 +30,26 @@ router.post('/mallas', upload.single('images') ,(req,res)=>{
   Cloudinary.v2.uploader.upload(req.file.path, function(err,result) { 
     if(err) res.status(500).json(err);
     res.status(200).json(result); 
-    img = result; 
-  })
-  var nuevaMalla = malla({
-    type: req.body.type,
-    subtype: req.body.subtype,
-    code: req.body.code,
-    length: req.body.length,
-    color: req.body.color,
-    origin: req.body.origin,
-    description: req.body.description,
-    price_dolar: req.body.price_dolar,
-    price_args: req.body.price_args,
-    active: true,
-    imgurl: img    
-  });
-  nuevaMalla.save(function(err,response){
-    if(err) res.status(500).json(err);
-    res.status(200).json(response);
+    img = result;
+
+    var nuevaMalla = malla({
+      type: req.body.type,
+      subtype: req.body.subtype,
+      code: req.body.code,
+      length: req.body.length,
+      color: req.body.color,
+      origin: req.body.origin,
+      description: req.body.description,
+      price_dolar: req.body.price_dolar,
+      price_args: req.body.price_args,
+      active: true,
+      imgurl: img    
+    });
+
+    nuevaMalla.save(function(err,response){
+      if(err) res.status(500).json(err);
+      res.status(200).json(response);
+    }) 
   })
 });
 
