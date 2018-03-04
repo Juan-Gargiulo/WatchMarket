@@ -29,7 +29,7 @@ const Gallery = ({ ...props, products, fetching, getCards }) => {
 
 //const renderCards = cards => cards.map(card => <Card card={card} key={card.cardId} animate/>)
 const renderProducts = products => products.map((product, key) => {
-      return <Card key={key} product={product} animate/>
+      return <Card key={key} product={product} animate />
 })
 
 

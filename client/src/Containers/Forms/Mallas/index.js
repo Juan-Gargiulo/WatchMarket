@@ -11,7 +11,7 @@ import { Row, Col } from 'react-grid-system';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 
-import { post } from 'axios';
+import { post, get, put } from 'axios';
 
 const styles = {
   paper : {
@@ -25,6 +25,7 @@ class SimpleReactFileUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isUpdate: false,
       file: null,
       code: "",
       description: "",
@@ -40,6 +41,7 @@ class SimpleReactFileUpload extends Component {
     }
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onChangeFile = this.onChangeFile.bind(this)
+    this.handleCode = this.handleCode.bind(this)
   }
 
   handleChangeSelect = from => (event, index, value) => {
@@ -51,6 +53,33 @@ class SimpleReactFileUpload extends Component {
 
   handleTextChange = (event, newValue) => {
     this.setState({[event.target.name]: newValue})
+  }
+
+  onChangeFile(e){
+    this.setState({file:e.target.files[0]})
+  }
+
+  handleCode = event => {
+    if(event.key == 'Enter'){
+      const { code } = this.state
+
+      get(`api/mallas/${code}`).then(res => {
+        this.setState({
+          isUpdate: true,
+          code: res.data[0].code,
+          description: res.data[0].description,
+          price_dolar: res.data[0].price_dolar,
+          price_args: res.data[0].price_args,
+          filtros: {
+            length: res.data[0].length,
+            origin: res.data[0].origin,
+            color: res.data[0].color,
+            subtype: res.data[0].subtype,
+            type: res.data[0].type,
+          }
+        })
+      })
+    }
   }
 
   onFormSubmit(e){
@@ -69,30 +98,28 @@ class SimpleReactFileUpload extends Component {
     formData.append('price_dolar', this.state.price_dolar)
     formData.append('price_args', this.state.price_args)
 
+
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     }
 
-    return post('api/mallas', formData, config)
+    if(this.state.isUpdate){
+      console.log("PUT")
+      put(`api/mallas/${this.state.code}`, formData, config)
+      .then(res => console.log(res))
+    }else{
+      console.log("POST")
+      post('api/mallas', formData, config)
       .then(res => console.log(res ))
-
-  }
-
-  onChangeFile(e){
-    this.setState({file:e.target.files[0]})
-  }
-
-  handleCode = event => {
-
-    if(event.key == 'Enter'){
-      alert(this.state.code)
     }
+
+
   }
 
 
   render() {
     return (      
-      <form onSubmit={this.onFormSubmit}>
+      <form>
         <Row>
           <Col sm={3}  />
           <Col xs={12} sm={6}>
@@ -202,7 +229,7 @@ class SimpleReactFileUpload extends Component {
               <input type="file" name="images" onChange={this.onChangeFile} />
               
 
-              <RaisedButton label="Guardar" type="submit" primary={true}/>
+              <RaisedButton label="Guardar" onClick={this.onFormSubmit} primary={true}/>
              {/*  <button type="submit">subir</button> */}
             </Paper>
           </Col>

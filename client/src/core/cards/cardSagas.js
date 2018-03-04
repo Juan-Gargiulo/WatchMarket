@@ -9,23 +9,21 @@ import { productTypes } from '../constants'
 
 function* getProducts({productType}) {
   try {
-    
+    console.log(productType)
     yield put(fetching());
 
     let products
     switch (productType) {
         case productTypes.MALLAS:
             products = yield call(fetchMallas)
-            console.log("mallas", products)
             break;
         case productTypes.PILAS:
             products = yield call(fetchPilas)
-            console.log("pilas", products)
             break;
         default:
             break;
     }
-
+    console.log(products)
     yield put(setProducts(products));
   } catch (e) {
     console.log(e.message);

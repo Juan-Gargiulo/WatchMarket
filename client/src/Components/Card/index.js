@@ -71,13 +71,14 @@ const Card = ({...props, product, animate}) => {
             <Link style={{textDecoration: 'none'}} to={`detail/${product.code}`}>
                 <ProductImg {...props} />
                     <List>
-												<Desc title="desc">{`${product.description}`}</Desc>
-												<Desc title="tipo">{product.type}</Desc>
-												<Desc title="color">{product.color}</Desc>
-												<Desc title="largo">{`${product.length} cm`}</Desc>
-												<Desc title="origen">{product.origin}</Desc>
-												<Desc title="dolares">{`${product.price_dolar}`}</Desc>
-												<Desc title="pesos">{`${product.price_args}`}</Desc>
+                        <Desc title="desc">{`${product.description}`}</Desc>
+                        <Desc title="tipo">{product.type}</Desc>
+                        <Desc title="subtipo">{product.subtype}</Desc>
+                        <Desc title="color">{product.color}</Desc>
+                        <Desc title="largo">{`${product.length} cm`}</Desc>
+                        <Desc title="origen">{product.origin}</Desc>
+                        <Desc title="dolares">{`${product.price_dolar}`}</Desc>
+                        <Desc title="pesos">{`${product.price_args}`}</Desc>
                     </List>
                    {/*  <p>{card.cardDescription}</p> */}
             </Link>
