@@ -68,33 +68,45 @@ router.post('/mallas', upload.single('images') ,(req,res)=>{
 // UPDATE
 router.put('/mallas/:code',upload.single('images') ,(req,res)=>{
 
-  Cloudinary.v2.uploader.upload(req.file.path,(err,result)=>{
-    if(err) res.status(500).json(err);
-   
-    var nuevaMalla = new malla({
-      type: req.body.type,
-      subtype: req.body.subtype,
-      code: req.body.code,
-      length: req.body.length,
-      color: req.body.color,
-      origin: req.body.origin,
-      description: req.body.description,
-      price_dolar: req.body.price_dolar,
-      price_args: req.body.price_args,
-      active: req.body.active,
-      imgurl: result.url         
-    });
-
-    malla.findByIdAndRemove(req.params.code,function(err,response){
+  if(req.file != null){
+    Cloudinary.v2.uploader.upload(req.file.path,(err,result)=>{
       if(err) res.status(500).json(err);
+    
+      malla.find({code: req.params.code},function(err,malla){
+        malla.type =  req.body.type,
+        malla.subtype = req.body.subtype,
+        malla.code = req.body.code,
+        malla.length = req.body.length,
+        malla.color = req.body.color,
+        malla.origin = req.body.origin,
+        malla.description = req.body.description,
+        malla.price_dolar = req.body.price_dolar,
+        malla.price_args = req.body.price_args,
+        malla.active = req.body.active,
+        malla.imgurl = result.imgurl
+      })
     })
-      
+  }else{
+    malla.find({code: req.params.code},function(err,malla){
+      malla.type =  req.body.type,
+      malla.subtype = req.body.subtype,
+      malla.code = req.body.code,
+      malla.length = req.body.length,
+      malla.color = req.body.color,
+      malla.origin = req.body.origin,
+      malla.description = req.body.description,
+      malla.price_dolar = req.body.price_dolar,
+      malla.price_args = req.body.price_args,
+      malla.active = req.body.active
+    })
+  }
+  /*  malla.findOneAndRemove(req.params.code,function(err,response){
+      if(err) res.status(500).json(err);
+    })      
     nuevaMalla.save(function(err,response){
       if(err) res.status(500).json(err);
       res.status(200).json(response);
-    })
-
-  })
+    })*/
 })
 
 module.exports = router;
