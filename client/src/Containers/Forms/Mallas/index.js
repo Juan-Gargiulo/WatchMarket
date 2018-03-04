@@ -24,7 +24,7 @@ class SimpleReactFileUpload extends Component {
 
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       file: null,
       code: "",
       description: "",
@@ -78,8 +78,15 @@ class SimpleReactFileUpload extends Component {
 
   }
 
-  onChangeFile(e) {
+  onChangeFile(e){
     this.setState({file:e.target.files[0]})
+  }
+
+  handleCode = event => {
+
+    if(event.key == 'Enter'){
+      alert(this.state.code)
+    }
   }
 
 
@@ -99,6 +106,7 @@ class SimpleReactFileUpload extends Component {
                 floatingLabelFixed
                 fullWidth
                 onChange={this.handleTextChange}
+                onKeyPress={this.handleCode}
               /><br />
               <TextField
                 name="price_dolar"
