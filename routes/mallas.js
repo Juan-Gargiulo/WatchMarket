@@ -24,6 +24,13 @@ router.get('/mallas/:type',(req,res,next)=> {
   })
 })
 
+router.get('/mallas/:code',(req,res,next)=> {
+  malla.find({code: req.params.code},function(err,response){
+    if(err) res.status(500).json(err);
+    res.status(200).json(response);
+  })
+})
+
 // READ ACTIVES
 router.get('/mallas/actives',(req,res,next)=>{
   malla.find({active:true},function(err,response){
