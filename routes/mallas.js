@@ -84,6 +84,9 @@ router.put('/mallas/:code',upload.single('images') ,(req,res)=>{
         malla.price_args = req.body.price_args,
         malla.active = req.body.active,
         malla.imgurl = result.imgurl
+
+        if(err) res.status(500).json(err);
+        res.status(200).json(malla);
       })
     })
   }else{
@@ -98,6 +101,10 @@ router.put('/mallas/:code',upload.single('images') ,(req,res)=>{
       malla.price_dolar = req.body.price_dolar,
       malla.price_args = req.body.price_args,
       malla.active = req.body.active
+
+      
+      if(err) res.status(500).json(err);
+      res.status(200).json(malla);
     })
   }
   /*  malla.findOneAndRemove(req.params.code,function(err,response){
