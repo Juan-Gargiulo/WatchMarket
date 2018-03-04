@@ -5,8 +5,10 @@ var PilaSchema = new Schema({
     type: String,
     subtype: String,
     code: String,
+    
     model: String,
     brand: String,
+
     origin: String,
     description: String,
     price_dolar: Number,

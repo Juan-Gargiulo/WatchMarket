@@ -6,8 +6,10 @@ var MallaSchema = new Schema({
   type: String ,
   subtype: String,
   code: String,
+  
   length: Number,
   color: String,
+
   origin: String,
   description: String,
   price_dolar: Number,
