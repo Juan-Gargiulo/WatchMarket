@@ -4,9 +4,10 @@ import { getProducts } from '../../core/cards/cardsActions'
 
 import { compose, withProps, lifecycle } from 'recompose'
 import withLoading from '../Hocs/LoadingHoc'
-import { cardsSelected } from '../../core/cards/cardSelectors'
 
+//import { cardsSelected } from '../../core/cards/cardSelectors'
 import Card from '../../Components/Card'
+
 import PageTitle from '../../Components/layout/PageTitle'
 
 import { COLOR } from '../../common/colors'
@@ -17,7 +18,7 @@ const Gallery = ({ ...props, products, fetching, getCards }) => {
    return (
       <Container {...this.props}>
 
-            <PageTitle title={'LANGUAGES & TECHNOLOGIES'} />
+            <PageTitle title={'Productos'} />
             <GalleryCont >
             { renderProducts(products) }
             </GalleryCont>
@@ -27,18 +28,20 @@ const Gallery = ({ ...props, products, fetching, getCards }) => {
 }
 
 //const renderCards = cards => cards.map(card => <Card card={card} key={card.cardId} animate/>)
-const renderProducts = products => products.map(product => <p>{product.name}</p>)
+const renderProducts = products => products.map((product, key) => {
+      return <Card key={key} product={product} animate/>
+})
 
 
 const enchanced = compose(
       connect(
             state => ({
                   loading: state.products.fetching,
-                  tech: state.products.tech,
+                  productType: state.products.productType,
                   products: state.products.products
             }),
             dispatch => ({
-                  getProducts: () => dispatch(getProducts())
+                  getProducts: productType => dispatch(getProducts(productType))
             })
       ),
       withProps({
@@ -48,7 +51,8 @@ const enchanced = compose(
       }),
       lifecycle({
             componentWillMount() {
-                  this.props.getProducts();
+                  const { getProducts, productType } = this.props
+                  getProducts(productType);
             },
       }),
       withLoading, //spinner HOC

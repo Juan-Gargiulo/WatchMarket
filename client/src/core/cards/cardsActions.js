@@ -1,31 +1,32 @@
 export const GET_PRODUCTS = "GET_PRODUCTS"
-export const GET_CARD_DETAIL = "GET_CARD_DETAIL"
-export const FILTER_CARD_DETAIL = "FILTER_CARD_DETAIL"
-export const FILTER_CARD = "FILTER_CARD"
+export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL"
+export const FILTER_PRODUCTS_DETAIL = "FILTER_PRODUCTS_DETAIL"
+export const FILTER_PRODUCTS = "FILTER_PRODUCTS"
 export const SET_PRODUCTS = "SET_PRODUCTS"
-export const FETCHING_CARDS = "FETCHING"
-export const FILTER_CARD_TECH = "FILTER_CARD_TECH"
+export const FETCHING_PRODUCTS = "FETCHING"
+export const FILTER_PRODUCTS_TYPE = "FILTER_PRODUCTS_TYPE"
 
-export const getCardDetail = (id) => ({
-  type: GET_CARD_DETAIL,
+export const getProductDetail = (id) => ({
+  type: GET_PRODUCT_DETAIL,
   payload: id
 })
 
-export const getProducts = () => ({
+export const getProducts = productType => ({
   type: GET_PRODUCTS,
+  productType
 })
 
 export const fetching = () => ({
-  type: FETCHING_CARDS,
+  type: FETCHING_PRODUCTS,
 })
 
-export const setCardFilter = filter => ({
-  type: FILTER_CARD,
+export const setProductFilter = filter => ({
+  type: FILTER_PRODUCTS,
   filter
 })
 
-export const setCardTech = filter => ({
-  type: FILTER_CARD_TECH,
+export const setProductType = filter => ({
+  type: FILTER_PRODUCTS_TYPE,
   filter
 })
 

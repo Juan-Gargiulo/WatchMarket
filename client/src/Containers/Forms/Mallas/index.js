@@ -11,19 +11,16 @@ import { Row, Col } from 'react-grid-system';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 
-import axios, { post, put } from 'axios';
+import { post } from 'axios';
 
 const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    width: "80%"
-  },
+  paper : {
+    padding : 30,
+    margin : 15
+  }
+}
 
-};
-
-class SimpleReactFileUpload extends React.Component {
+class SimpleReactFileUpload extends Component {
 
   constructor(props) {
     super(props);
@@ -31,8 +28,8 @@ class SimpleReactFileUpload extends React.Component {
       file: null,
       code: "",
       description: "",
-      price_dolar: 0,
-      price_args: 0,
+      price_dolar: null,
+      price_args: null,
       filtros: {
         length: 0,
         origin: "",
@@ -42,19 +39,18 @@ class SimpleReactFileUpload extends React.Component {
       } 
     }
     this.onFormSubmit = this.onFormSubmit.bind(this)
-    this.onChange = this.onChange.bind(this)
-    this.fileUpload = this.fileUpload.bind(this)
+    this.onChangeFile = this.onChangeFile.bind(this)
   }
 
-  handleChange = tipo => (event, index, value) => {
+  handleChangeSelect = from => (event, index, value) => {
     const filtros = this.state.filtros
-    filtros[tipo] = value
+    filtros[from] = value
     if(this.state.filtros.type !== "cuero") filtros.subtype = ""
     this.setState({filtros})
   };
 
-  handleTextChange = field => (event, newValue) => {
-    this.setState({[field]: newValue})
+  handleTextChange = (event, newValue) => {
+    this.setState({[event.target.name]: newValue})
   }
 
   onFormSubmit(e){
@@ -82,58 +78,64 @@ class SimpleReactFileUpload extends React.Component {
 
   }
 
-  onChange(e) {
+  onChangeFile(e) {
     this.setState({file:e.target.files[0]})
   }
 
-  fileUpload(file){
-    const url = 'api/mallas';
-    const formData = new FormData();
-    formData.append('images',file)
-
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    }
-    return post(url, formData,config)
-  }
 
   render() {
-    return (
+    return (      
       <form onSubmit={this.onFormSubmit}>
-        
         <Row>
-        <Col xs={12} debug align="center">
-          <Col xs={4} debug align="center">
+          <Col sm={3}  />
+          <Col xs={12} sm={6}>
+            <Paper style={styles.paper}>
+          
               <h1>Mallas</h1>
               <TextField
+                name="code"
+                hintText="Codigo"
                 floatingLabelText="Codigo"
-                onChange={this.handleTextChange("code")}
+                floatingLabelFixed
+                fullWidth
+                onChange={this.handleTextChange}
               /><br />
               <TextField
+                name="price_dolar"
+                fullWidth
                 floatingLabelText="Precio Dolar"
+                hintText="Precio Dolar"
+                floatingLabelFixed
                 type="number"
                 value={this.state.price_dolar}
-                onChange={this.handleTextChange("price_dolar")}
+                onChange={this.handleTextChange}
               /><br />
               <TextField
+                name="price_args"
+                fullWidth
                 floatingLabelText="Precio Pesos"
+                hintText="Precio Pesos"
+                floatingLabelFixed
                 type="number"
                 value={this.state.price_args}
-                onChange={this.handleTextChange("price_args")}
+                onChange={this.handleTextChange}
               /><br />
               <TextField
+                name="description"
+                fullWidth
                 floatingLabelText="Descripcion"
+                hintText="Descripcion"
+                floatingLabelFixed
                 multiLine
                 value={this.state.description}
-                onChange={this.handleTextChange("description")}
+                onChange={this.handleTextChange}
               /><br />
 
               <SelectField
+                fullWidth
                 floatingLabelText="Tipo"
                 value={this.state.filtros.type}
-                onChange={this.handleChange("type")}
+                onChange={this.handleChangeSelect("type")}
               >
                 <MenuItem value={"cuero"} primaryText="Cuero" />
                 <MenuItem value={"casio"} primaryText="Casio" />
@@ -145,7 +147,7 @@ class SimpleReactFileUpload extends React.Component {
                 this.state.filtros.type === "cuero" && <SelectField
                 floatingLabelText="Subtipo"
                 value={this.state.filtros.subtype}
-                onChange={this.handleChange("subtype")}
+                onChange={this.handleChangeSelect('subtype')}
               >
                 <MenuItem value={"planas"} primaryText="Planas" />
                 <MenuItem value={"anchas"} primaryText="Anchas" />
@@ -153,12 +155,13 @@ class SimpleReactFileUpload extends React.Component {
                 <MenuItem value={"especial"} primaryText="Especiales Liquidacion" />
               </SelectField>
 
-              }<br />
+              }
 
               <SelectField
+                fullWidth
                 floatingLabelText="Largo"
                 value={this.state.filtros.length}
-                onChange={this.handleChange("length")}
+                onChange={this.handleChangeSelect("length")}
               >
                 <MenuItem value={10} primaryText="10" />
                 <MenuItem value={15} primaryText="15" />
@@ -166,9 +169,10 @@ class SimpleReactFileUpload extends React.Component {
               </SelectField><br />
 
               <SelectField
+                fullWidth
                 floatingLabelText="Color"
                 value={this.state.filtros.color}
-                onChange={this.handleChange("color")}
+                onChange={this.handleChangeSelect("color")}
               >
                 <MenuItem value={"negro"} primaryText="Negro" />
                 <MenuItem value={"blanco"} primaryText="Blanco" />
@@ -176,23 +180,25 @@ class SimpleReactFileUpload extends React.Component {
               </SelectField><br />
 
               <SelectField
+                fullWidth
                 floatingLabelText="Origen"
                 value={this.state.filtros.origin}
-                onChange={this.handleChange("origin")}
+                onChange={this.handleChangeSelect("origin")}
               >
                 <MenuItem value={"china"} primaryText="China" />
                 <MenuItem value={"usa"} primaryText="EEUU" />
                 <MenuItem value={"brasil"} primaryText="Brasil" />
-              </SelectField><br />
+              </SelectField><br/><br/>
 
 
-              <input type="file" name="images" onChange={this.onChange} />
+              <input type="file" name="images" onChange={this.onChangeFile} />
               
 
               <RaisedButton label="Guardar" type="submit" primary={true}/>
              {/*  <button type="submit">subir</button> */}
+            </Paper>
           </Col>
-          </Col>
+          <Col sm={3} />
         </Row>
       </form>
    )

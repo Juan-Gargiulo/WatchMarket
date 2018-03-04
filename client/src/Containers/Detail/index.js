@@ -17,13 +17,13 @@ import {
 import { compose, lifecycle, withProps, pure } from 'recompose'
 import withLoading from '../Hocs/LoadingHoc'
 
-import { getCardDetail } from '../../core/cards/cardsActions'
+import { getProductDetail } from '../../core/cards/cardsActions'
 
 
 const CardDetail = ({
     ...props,
     card,
-    getCardDetail,
+    getProductDetail,
     history : { goBack },
     match : { params : id }
 
@@ -68,7 +68,7 @@ export default compose(
             card: state.cards.cards[0]
         }),
         dispatch => ({
-            getCardDetail: id => dispatch(getCardDetail(id))
+            getProductDetail: id => dispatch(getProductDetail(id))
         })
     ),
     withProps({
@@ -80,7 +80,7 @@ export default compose(
         componentWillMount() {
             const id = parseInt(this.props.match.params.id, 10)
             console.log(id)
-            this.props.getCardDetail(id);
+            this.props.getProductDetail(id);
         },
     }),
     withLoading,

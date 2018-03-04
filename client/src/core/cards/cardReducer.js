@@ -1,34 +1,36 @@
 import { 
-  FETCHING_CARDS, 
-  FILTER_CARD, 
+  FETCHING_PRODUCTS, 
+  FILTER_PRODUCTS, 
   SET_PRODUCTS, 
-  FILTER_CARD_TECH,
-  FILTER_CARD_DETAIL
+  FILTER_PRODUCTS_TYPE,
+  FILTER_PRODUCTS_DETAIL
 } from './cardsActions'
+
+import { productTypes } from '../constants'
 
 const initialState = {
     fetching: false,
     filter: "",
-    tech: "Frontend",
+    productType: productTypes.MALLAS,
     products: []
 }
 
 const cardsReducer = (state = initialState, action) => {
     switch (action.type) {
 
-      case FETCHING_CARDS:        
+      case FETCHING_PRODUCTS:        
         return { ...state, fetching: true }
 
       case SET_PRODUCTS:
         return { ...state, ...{fetching: false, products: action.products} }
 
-      case FILTER_CARD:
+      case FILTER_PRODUCTS:
         return { ...state, filter: action.filter }
 
-      case FILTER_CARD_TECH:
-        return { ...state, tech: action.filter }
+      case FILTER_PRODUCTS_TYPE:
+        return { ...state, productType: action.filter }
 
-      case FILTER_CARD_DETAIL:
+      case FILTER_PRODUCTS_DETAIL:
         
         return {
             ...state,

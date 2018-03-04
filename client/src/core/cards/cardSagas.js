@@ -1,43 +1,48 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
-import {delay} from 'redux-saga';
+import { call, put, takeEvery } from "redux-saga/effects";
 
-import { GET_PRODUCTS, GET_CARD_DETAIL, FILTER_CARD_DETAIL } from './cardsActions'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, FILTER_PRODUCTS_DETAIL } from "./cardsActions";
 
-import { fetching, setProducts } from './cardsActions'
-import { fetchCardsApi, fetchPrducts } from './api'
+import { fetching, setProducts } from "./cardsActions";
+import { fetchMallas, fetchPilas } from "./api";
 
-function* getProducts() {
-    try {
-       yield put( fetching() );
-       const products = yield call( fetchPrducts );
+import { productTypes } from '../constants'
 
-       yield call(delay, 1000)
+function* getProducts({productType}) {
+  try {
+    
+    yield put(fetching());
 
-       yield put( setProducts(products) );
-
-    } catch (e) {
-       console.log(e.message);
+    let products
+    switch (productType) {
+        case productTypes.MALLAS:
+            products = yield call(fetchMallas)
+            console.log("mallas", products)
+            break;
+        case productTypes.PILAS:
+            products = yield call(fetchPilas)
+            console.log("pilas", products)
+            break;
+        default:
+            break;
     }
- }
 
- function* filterCardDetail({payload}) {
-    try {
-       yield put( fetching() );
+    yield put(setProducts(products));
+  } catch (e) {
+    console.log(e.message);
+  }
+}
 
-       yield call(delay, 1000)
+function* filterCardDetail({ payload }) {
+  try {
+    yield put(fetching());
 
-       yield put( {
-        type: FILTER_CARD_DETAIL,
-        payload
-      } );
+    yield put({
+      type: FILTER_PRODUCTS_DETAIL,
+      payload
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
 
-
-    } catch (e) {
-       console.log(e.message)
-    }
- }
-
-export const cardsSagas = [
-    takeEvery(GET_PRODUCTS, getProducts),
-    takeEvery(GET_CARD_DETAIL, filterCardDetail),
-];
+export const cardsSagas = [takeEvery(GET_PRODUCTS, getProducts), takeEvery(GET_PRODUCT_DETAIL, filterCardDetail)];

@@ -2,6 +2,8 @@ import React from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import { COLOR } from '../../../common/colors'
 
+import { productTypes } from '../../../core/constants'
+
 export const stylesDefautl = {
   container: {padding: '25px 20px 10px 25px'},
   span: {fontSize: '1.1em', color: COLOR.primaryColorStrong},
@@ -19,13 +21,13 @@ const RadioGroup = ({
     <span style={styles.span}>{title}</span>
     <RadioButtonGroup name="shipSpeed" defaultSelected="Frontend" onChange={radioSelected}>
       <RadioButton
-        value="Frontend"
-        label="Frontend"
+        value={productTypes.MALLAS}
+        label="Mallas"
         {...styles}
       />
       <RadioButton
-        value="Backend"
-        label="Backend"
+        value={productTypes.PILAS}
+        label="Pilas"
         {...styles}
       />
     </RadioButtonGroup>
