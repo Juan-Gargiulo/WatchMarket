@@ -10,28 +10,19 @@ const pila = require('../models/pila');
 
 // READ ALL
 router.get('/pilas',function(req,res){
-    pila.find({},function(err,response){
+    pila.find(req.query,function(err,response){
       if(err) res.status(500).json(err);
       res.status(200).json(response);
     })
 });
 
-
 // READ ACTIVES
-router.get("/pilas/actives", (req, res, next) => {
+/* router.get("/pilas", (req, res, next) => {
   pila.find({ active: true }, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
   });
-});
-
-// READ BY TYPE
-/*router.get('/pilas/:type',(req,res,next)=>{
-    pila.find({type:req.params.type},function(err,result){
-      if(err) res.status(500).json(err);
-      res.status(200).json(result); 
-    })
-})*/
+}); */
 
 router.get("/pilas/:code", (req, res, next) => {
   pila.find({ code: req.params.code }, function(err, response) {
@@ -79,6 +70,7 @@ router.put("/pilas/:code", upload.single("images"), (req, res) => {
       }
     );
   };
+
   const updatedPila = {
     type: req.body.type,
     subtype: req.body.subtype,

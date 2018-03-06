@@ -1,16 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import List from 'material-ui/List';
 import ActionInfo from 'material-ui/svg-icons/action/info';
-import Chip from 'material-ui/Chip';
-import Subheader from 'material-ui/Subheader';
 
 
 import { Link } from 'react-router-dom'
 
-import { COLOR } from '../../common/colors'
+//import { COLOR } from '../../common/colors'
 
 import Paper from 'material-ui/Paper';
 
@@ -29,9 +26,9 @@ const Container = styled.div`
             transform: scale(1.02);
         }` : ""}
 `
-const Description = styled.div`
+/* const Description = styled.div`
     color: ${COLOR.primaryFontColor};
-`
+` */
 
 const ProductImg = styled.img.attrs({
     src: props => props.product.imgurl

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { compose } from 'recompose';
 
-import { setProductFilter, setProductType } from '../../core/cards/cardsActions';
+import { setProductFilter, setProductType, getProducts } from '../../core/cards/cardsActions';
 
 import { Container } from './style'
 
@@ -12,12 +12,12 @@ import Search from '../controls/Search'
 import RadioGroup from '../controls/Filter'
 
 
-const Sidebar = ({...props, filterFn, setTech}) => {
+const Sidebar = ({...props, filterFn, setProductType}) => {
   
   return (
     <Container {...props} >
       <Search
-        hintText="search in cards"
+        hintText="buscar.."
         filterFn={filterFn}
       />
       <RadioGroup radioSelected={setProductType}/>
@@ -30,7 +30,7 @@ const enchanced = compose(
     null,
     dispatch => ({
       filterFn: filter => dispatch(setProductFilter(filter)),
-      setProductType: (e, tech) => dispatch(setProductType(tech))
+      setProductType: (e, tech) => dispatch(getProducts(tech))
     })
   )
 )

@@ -4,7 +4,6 @@ import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import Toggle from 'material-ui/Toggle';
 
 import { Row, Col } from "react-grid-system";
 
@@ -16,28 +15,24 @@ const styles = {
   paper: {
     padding: 30,
     margin: 15
-  },
-  toggleContainer: {
-    width: 50,
-    marginTop: 20
   }
 };
 
-class FormMallas extends Component {
+class FormPilas extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isUpdate: false,
-      file: null,
       code: "",
+      file: null,
       description: "",
       price_dolar: 0,
       price_args: 0,
       active: true,
       filtros: {
-        length: 0,
+        model: "",
+        brand: "",
         origin: "",
-        color: "",
         subtype: "",
         type: ""
       }
@@ -66,23 +61,26 @@ class FormMallas extends Component {
     if (event.key === "Enter") {
       const { code } = this.state;
 
-      get(`api/mallas/${code}`).then(res => {
-        if (res.data.length === 0) return;
-
-        this.setState({
-          isUpdate: true,
-          description: res.data[0].description,
-          price_dolar: res.data[0].price_dolar,
-          price_args: res.data[0].price_args,
-          filtros: {
-            length: res.data[0].length,
-            origin: res.data[0].origin,
-            color: res.data[0].color,
-            subtype: res.data[0].subtype,
-            type: res.data[0].type
-          }
-        });
-      });
+      get(`api/pilas/${code}`)
+        .then(res => {
+          if (res.data.length === 0) return;
+          this.setState({
+            isUpdate: true,
+            description: res.data[0].description,
+            price_dolar: res.data[0].price_dolar,
+            brand: res.data[0].brand,
+            price_args: res.data[0].price_args,
+            filtros: {
+              model: res.data[0].model,
+              length: res.data[0].length,
+              origin: res.data[0].origin,
+              color: res.data[0].color,
+              subtype: res.data[0].subtype,
+              type: res.data[0].type
+            }
+          });
+        })
+        .catch(err => alert("no existe"));
     }
   };
 
@@ -95,8 +93,8 @@ class FormMallas extends Component {
     formData.append("code", this.state.code);
     formData.append("type", this.state.filtros.type);
     formData.append("subtype", this.state.filtros.subtype);
-    formData.append("length", this.state.filtros.length);
-    formData.append("color", this.state.filtros.color);
+    formData.append("model", this.state.filtros.model);
+    formData.append("brand", this.state.filtros.brand);
     formData.append("origin", this.state.filtros.origin);
     formData.append("description", this.state.description);
     formData.append("price_dolar", this.state.price_dolar);
@@ -107,11 +105,9 @@ class FormMallas extends Component {
     };
 
     if (this.state.isUpdate) {
-      console.log("PUT");
-      put(`api/mallas/${this.state.code}`, formData, config).then(res => console.log(res));
+      put(`api/pilas/${this.state.code}`, formData, config).then(res => console.log(res));
     } else {
-      console.log("POST");
-      post("api/mallas", formData, config).then(res => console.log(res));
+      post("api/pilas", formData, config).then(res => console.log(res));
     }
   }
 
@@ -122,7 +118,7 @@ class FormMallas extends Component {
           <Col sm={3} />
           <Col xs={12} sm={6}>
             <Paper style={styles.paper}>
-              <h1>Mallas</h1>
+              <h1>Formuilario Pilas</h1>
               <TextField
                 name="code"
                 hintText="Codigo"
@@ -173,49 +169,50 @@ class FormMallas extends Component {
                 value={this.state.filtros.type}
                 onChange={this.handleChangeSelect("type")}
               >
-                <MenuItem value={"cuero"} primaryText="Cuero" />
-                <MenuItem value={"casio"} primaryText="Casio" />
-                <MenuItem value={"silicona"} primaryText="Silicona" />
-                <MenuItem value={"acero"} primaryText="Acero" />
+                <MenuItem value={"oxidoDePlata"} primaryText="oxido de plata" />
+                <MenuItem value={"lithium"} primaryText="lithium" />
+                <MenuItem value={"alkalinas"} primaryText="alkalinas" />
+                <MenuItem value={"audifonos"} primaryText="audifonos" />
+                <MenuItem value={"bateriaDeCosumo"} primaryText="bateriaDeCosumo" />
+                <MenuItem value={"acumuladores"} primaryText="acumuladores" />
               </SelectField>
               <br />
 
-              {this.state.filtros.type === "cuero" && (
+              {this.state.filtros.type === "acumuladores" && (
                 <SelectField
                   floatingLabelText="Subtipo"
                   value={this.state.filtros.subtype}
                   onChange={this.handleChangeSelect("subtype")}
                 >
-                  <MenuItem value={"planas"} primaryText="Planas" />
-                  <MenuItem value={"anchas"} primaryText="Anchas" />
-                  <MenuItem value={"extralargas"} primaryText="Extralargas" />
-                  <MenuItem value={"especial"} primaryText="Especiales Liquidacion" />
+                  <MenuItem value={"citizen"} primaryText="citizen" />
+                  <MenuItem value={"seiko"} primaryText="seiko" />
+                  <MenuItem value={"casio"} primaryText="casio" />
                 </SelectField>
               )}
 
-              <SelectField
+                <SelectField
                 fullWidth
-                floatingLabelText="Largo"
-                value={this.state.filtros.length}
-                onChange={this.handleChangeSelect("length")}
+                floatingLabelText="Modelo"
+                value={this.state.filtros.model}
+                onChange={this.handleChangeSelect("model")}
               >
-                <MenuItem value={10} primaryText="10" />
-                <MenuItem value={15} primaryText="15" />
-                <MenuItem value={20} primaryText="20" />
+                <MenuItem value={"modelo1"} primaryText="modelo 1" />
+                <MenuItem value={"modelo2"} primaryText="modelo 2" />
               </SelectField>
               <br />
 
-              <SelectField
+               <SelectField
                 fullWidth
-                floatingLabelText="Color"
-                value={this.state.filtros.color}
-                onChange={this.handleChangeSelect("color")}
+                floatingLabelText="Marca"
+                value={this.state.filtros.brand}
+                onChange={this.handleChangeSelect("brand")}
               >
-                <MenuItem value={"negro"} primaryText="Negro" />
-                <MenuItem value={"blanco"} primaryText="Blanco" />
-                <MenuItem value={"marron"} primaryText="Marron" />
+                <MenuItem value={"marca1"} primaryText="marca 1" />
+                <MenuItem value={"marca2"} primaryText="marca 2" />
               </SelectField>
               <br />
+
+
 
               <SelectField
                 fullWidth
@@ -227,29 +224,13 @@ class FormMallas extends Component {
                 <MenuItem value={"usa"} primaryText="EEUU" />
                 <MenuItem value={"brasil"} primaryText="Brasil" />
               </SelectField>
-
-              <div style={styles.toggleContainer}>
-                <Toggle
-                  label="Activo"
-                  toggled={this.state.active}
-                  disabled={!this.state.isUpdate}
-                  onToggle={(e,c) => this.setState({active: c}) }
-                />
-              </div>
+              <br />
               <br />
 
-              <input type="file" name="images" onChange={this.onChangeFile} /><br />
-              
-              <div>
-              <RaisedButton 
-                style={{left: 0}}
-                label="Guardar" 
-                primary={true} 
-                onClick={this.onFormSubmit} 
-              />
-              </div>
+              <input type="file" name="images" onChange={this.onChangeFile} />
 
-
+              <RaisedButton label="Guardar" onClick={this.onFormSubmit} primary={true} />
+              {/*  <button type="submit">subir</button> */}
             </Paper>
           </Col>
           <Col sm={3} />
@@ -259,4 +240,4 @@ class FormMallas extends Component {
   }
 }
 
-export default FormMallas;
+export default FormPilas;
