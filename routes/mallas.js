@@ -10,19 +10,20 @@ const malla = require("../models/malla");
 
 // READ ALL
 router.get("/mallas", (req, res, next) => {
-  malla.find({}, function(err, response) {
+  
+  malla.find(req.query, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
   });
 });
 
 // READ ACTIVES
-router.get("/mallas/actives", (req, res, next) => {
+/* router.get("/mallas/actives", (req, res, next) => {
   malla.find({ active: true }, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
   });
-});
+}); */
 
 // READ BY TYPE
 /* router.get('/mallas/:type',(req,res,next)=> {

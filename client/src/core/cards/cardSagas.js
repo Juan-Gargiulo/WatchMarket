@@ -2,7 +2,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 
 import { GET_PRODUCTS, GET_PRODUCT_DETAIL, FILTER_PRODUCTS_DETAIL } from "./cardsActions";
 
-import { fetching, setProducts } from "./cardsActions";
+import { fetching, setProducts, setProductType } from "./cardsActions";
 import { fetchMallas, fetchPilas } from "./api";
 
 import { productTypes } from '../constants'
@@ -23,8 +23,9 @@ function* getProducts({productType}) {
         default:
             break;
     }
-    console.log(products)
     yield put(setProducts(products));
+    yield put(setProductType(productType));
+
   } catch (e) {
     console.log(e.message);
   }

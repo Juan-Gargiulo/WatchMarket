@@ -15,11 +15,11 @@ export const stylesDefautl = {
 const RadioGroup = ({
   ...props, radioSelected,
   styles=stylesDefautl,
-  title = 'Filter By'
+  title = 'Productos'
 }) => (
   <div style={styles.container}>
     <span style={styles.span}>{title}</span>
-    <RadioButtonGroup name="shipSpeed" defaultSelected="Frontend" onChange={radioSelected}>
+    <RadioButtonGroup name="shipSpeed" defaultSelected={productTypes.MALLAS} onChange={radioSelected}>
       <RadioButton
         value={productTypes.MALLAS}
         label="Mallas"

@@ -9,13 +9,15 @@ import {
 import Gallery from '../Gallery'
 import Detail from '../Detail'
 import FormMallas from '../Forms/Mallas'
+import FormsPilas from '../Forms/Pilas'
 
 import { Container } from './style.js'
 
 export const paths = {
   GALLERY: '/',
   CARD_DETAIL: '/detail/:id',
-  FORM_MALLAS: '/mallas'
+  FORMMALLAS: '/mallas',
+  FORMPILAS: '/pilas'
 };
 
 const routes = [
@@ -29,8 +31,12 @@ const routes = [
     render: props => <Detail title="Detail" {...props} />
   },
   {
-    path: paths.FORM,
+    path: paths.FORMMALLAS,
     render: props => <FormMallas title="Table" {...props} />
+  },
+  {
+    path: paths.FORMPILAS,
+    render: props => <FormsPilas title="Table" {...props} />
   },
   {
     component: () => <h3>No match for this route></h3>
