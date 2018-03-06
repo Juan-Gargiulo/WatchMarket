@@ -16,6 +16,15 @@ router.get('/pilas',function(req,res){
     })
 });
 
+
+// READ ACTIVES
+router.get("/pilas/actives", (req, res, next) => {
+  pila.find({ active: true }, function(err, response) {
+    if (err) res.status(500).json(err);
+    res.status(200).json(response);
+  });
+});
+
 // READ BY TYPE
 /*router.get('/pilas/:type',(req,res,next)=>{
     pila.find({type:req.params.type},function(err,result){
@@ -31,13 +40,6 @@ router.get("/pilas/:code", (req, res, next) => {
   });
 });
 
-// READ ACTIVES
-router.get("/pilas/actives", (req, res, next) => {
-  pila.find({ active: true }, function(err, response) {
-    if (err) res.status(500).json(err);
-    res.status(200).json(response);
-  });
-});
 
 // CREATE
 router.post('/pilas', upload.single('images') ,(req,res)=>{
