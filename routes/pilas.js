@@ -17,12 +17,12 @@ router.get('/pilas',function(req,res){
 });
 
 // READ ACTIVES
-/* router.get("/pilas", (req, res, next) => {
+router.get("/pilas/actives", (req, res, next) => {
   pila.find({ active: true }, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
   });
-}); */
+});
 
 router.get("/pilas/:code", (req, res, next) => {
   pila.find({ code: req.params.code }, function(err, response) {
@@ -80,7 +80,7 @@ router.put("/pilas/:code", upload.single("images"), (req, res) => {
     description: req.body.description,
     price_dolar: req.body.price_dolar,
     price_args: req.body.price_args,
-    active: true
+    active: req.body.active
   };
   if (req.file) {
     Cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
