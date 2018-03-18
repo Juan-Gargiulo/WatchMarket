@@ -1,20 +1,22 @@
 import { createSelector } from 'reselect';
 
-const cards = state => state.cards.cards
-const filter = state => state.cards.filter
-const tech = state => state.cards.tech
+const products = state => state.products.products
+const filters = state => state.products.filters
 
-export const cardsTech = createSelector(
-  [cards, tech],
-  (cards, tech) => cards.filter(cards => cards.cardTechnology.includes(tech))
+
+export const productFilter = createSelector(
+  [products, filters],
+  (products, filters) => {
+    return products.filter(p => (p.color === filters.color || filters.color === 0) &&
+    (p.length === filters.medida || filters.medida === 0) &&
+    (p.marca === filters.marca || filters.marca === 0) &&
+    (p.modelo === filters.modelo || filters.modelo === 0) &&
+    (p.origen === filters.origen || filters.origen === 0)
+    )
+  }
 );
 
-export const cardsFilter = createSelector(
-  [cardsTech, filter],
-  (cards, filter) => cards.filter(cards => cards.cardDescription.toLowerCase().includes(filter))
-);
-
-export const cardsSelected = createSelector(
-  cardsFilter,
-  cards => cards
+export const productSelected = createSelector(
+  productFilter,
+  products => products
 );

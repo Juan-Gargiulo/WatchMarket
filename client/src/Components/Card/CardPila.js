@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
-import ActionInfo from 'material-ui/svg-icons/action/info';
 
 
 import { Link } from 'react-router-dom'
@@ -13,7 +12,7 @@ import Paper from 'material-ui/Paper';
 
 const Container = styled.div`
     display: block;
-    cursor: pointer;	
+    cursor: pointer;
     width: 325px;
     margin-left: 12px;
     margin-right: 12px;
@@ -34,7 +33,7 @@ const ProductImg = styled.img.attrs({
     src: props => props.product.imgurl
 })`
 		width: 100%;
-		
+
 `
 
 
@@ -53,14 +52,12 @@ const Desc = ({title, children}) => {
 		}
 
     return <div style={styles.content}>
-        <ActionInfo style={{color: '#d3d3d3'}}/>
 				<strong style={styles.title}>{`${title}:`}</strong>
         {children}
     </div>
 }
 
 const Card = ({...props, product, animate}) => {
-    console.log(product)
     return (
         <Container animate={animate}>
         <Paper zDepth={3}>

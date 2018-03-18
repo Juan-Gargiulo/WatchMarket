@@ -9,7 +9,6 @@ import { productTypes } from '../constants'
 
 function* getProducts({productType}) {
   try {
-    console.log(productType)
     yield put(fetching());
 
     let products
