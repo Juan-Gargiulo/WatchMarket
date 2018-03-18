@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../src/Containers/App'
 import registerServiceWorker from './registerServiceWorker';
@@ -21,7 +21,7 @@ const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(sagaMiddleware),
-        //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
 

@@ -239,13 +239,13 @@ class FormMallas extends Component {
               <br />
 
               <input type="file" name="images" onChange={this.onChangeFile} /><br />
-              
+
               <div>
-              <RaisedButton 
+              <RaisedButton
                 style={{left: 0}}
-                label="Guardar" 
-                primary={true} 
-                onClick={this.onFormSubmit} 
+                label="Guardar"
+                primary={true}
+                onClick={this.onFormSubmit}
               />
               </div>
 

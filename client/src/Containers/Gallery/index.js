@@ -5,7 +5,7 @@ import { getProducts } from '../../core/cards/cardsActions'
 import { compose, withProps, lifecycle } from 'recompose'
 import withLoading from '../Hocs/LoadingHoc'
 
-//import { cardsSelected } from '../../core/cards/cardSelectors'
+import { productSelected } from '../../core/cards/cardSelectors'
 import CardMalla from '../../Components/Card/CardMalla'
 import CardPila from '../../Components/Card/CardPila'
 import { productTypes } from "../../core/constants"
@@ -16,8 +16,7 @@ import { COLOR } from '../../common/colors'
 import { Container, GalleryCont } from './style.js'
 
 
-const Gallery = ({ ...props, products, fetching, getCards, productType }) => {
-	console.info(products)
+const Gallery = ({ ...props, products, fetching, getCards, productType, productFilters }) => {
    return (
       <Container {...this.props}>
 
@@ -34,11 +33,11 @@ const Gallery = ({ ...props, products, fetching, getCards, productType }) => {
 const renderProducts = (products, productType) => products.map((product, key) => {
 		switch (productType) {
 			case productTypes.MALLAS:
-				return <CardMalla key={key} product={product} animate /> 
+				return <CardMalla key={key} product={product} animate />
 				break;
 			case productTypes.PILAS:
-				return <CardPila key={key} product={product} animate /> 
-				break;			
+				return <CardPila key={key} product={product} animate />
+				break;
 			default:
 				break;
 		}
@@ -50,7 +49,9 @@ const enchanced = compose(
             state => ({
                   loading: state.products.fetching,
                   productType: state.products.productType,
-                  products: state.products.products
+                  productFilters: state.products.filters,
+                  products: productSelected(state)
+
             }),
             dispatch => ({
                   getProducts: productType => dispatch(getProducts(productType))
