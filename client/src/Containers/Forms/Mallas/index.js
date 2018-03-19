@@ -178,7 +178,7 @@ class FormMallas extends Component {
                 <MenuItem value={"silicona"} primaryText="Silicona" />
                 <MenuItem value={"acero"} primaryText="Acero" />
               </SelectField>
-              <br />
+              <br />  
 
               {this.state.filtros.type === "cuero" && (
                 <SelectField
@@ -199,9 +199,21 @@ class FormMallas extends Component {
                 value={this.state.filtros.length}
                 onChange={this.handleChangeSelect("length")}
               >
-                <MenuItem value={10} primaryText="10" />
-                <MenuItem value={15} primaryText="15" />
-                <MenuItem value={20} primaryText="20" />
+                <MenuItem value={0} primaryText="todas" />
+                <MenuItem value={10} primaryText="10 mm" />
+                <MenuItem value={12} primaryText="12 mm" />
+                <MenuItem value={14} primaryText="14 mm" />
+                <MenuItem value={16} primaryText="16 mm" />
+                <MenuItem value={18} primaryText="18 mm" />
+                <MenuItem value={20} primaryText="20 mm" />
+                <MenuItem value={22} primaryText="22 mm" />
+                <MenuItem value={24} primaryText="24 mm" />
+                <MenuItem value={26} primaryText="26 mm" />
+                <MenuItem value={28} primaryText="28 mm" />
+                <MenuItem value={30} primaryText="30 mm" />
+                <MenuItem value={32} primaryText="32 mm" />
+                <MenuItem value={34} primaryText="34 mm" />
+                <MenuItem value={38} primaryText="38 mm" />
               </SelectField>
               <br />
 
@@ -211,9 +223,15 @@ class FormMallas extends Component {
                 value={this.state.filtros.color}
                 onChange={this.handleChangeSelect("color")}
               >
-                <MenuItem value={"negro"} primaryText="Negro" />
-                <MenuItem value={"blanco"} primaryText="Blanco" />
-                <MenuItem value={"marron"} primaryText="Marron" />
+                <MenuItem value={0} primaryText="todos" />
+                <MenuItem value={"negro"} primaryText="negro" />
+                <MenuItem value={"gris"} primaryText="gris" />
+                <MenuItem value={"marron oscuro"} primaryText="marron oscuro" />
+                <MenuItem value={"marron claro"} primaryText="marron claro" />
+                <MenuItem value={"marron tostado"} primaryText="marron tostado" />
+                <MenuItem value={"blanco"} primaryText="blanco" />
+                <MenuItem value={"blanco"} primaryText="blanco" />
+                <MenuItem value={"rosa"} primaryText="rosa" />
               </SelectField>
               <br />
 
