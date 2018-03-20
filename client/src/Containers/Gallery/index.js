@@ -15,12 +15,19 @@ import PageTitle from '../../Components/layout/PageTitle'
 import { COLOR } from '../../common/colors'
 import { Container, GalleryCont } from './style.js'
 
+import { Link } from 'react-router-dom'
+
+
 
 const Gallery = ({ ...props, products, fetching, getCards, productType, productFilters }) => {
    return (
       <Container {...this.props}>
+            {
+              productType === productTypes.MALLAS ?
+              <MallasNavBar /> :
+              <PilasNavBar />
+            }
 
-            <PageTitle title={'Productos'} />
             <GalleryCont >
             { renderProducts(products, productType) }
             </GalleryCont>
@@ -42,6 +49,20 @@ const renderProducts = (products, productType) => products.map((product, key) =>
 				break;
 		}
 })
+
+const MallasNavBar = props => (
+  <div>
+    <PageTitle title={'Mallas'} />
+    <Link to={`/mallas`}>{"Alta - Modificación"}</Link>
+  </div>
+)
+
+const PilasNavBar = props => (
+  <div>
+    <PageTitle title={'Pilas'} />
+    <Link to={`/pilas`}>{"Alta - Modificación"}</Link>
+  </div>
+)
 
 
 const enchanced = compose(

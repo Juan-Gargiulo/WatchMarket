@@ -5,6 +5,7 @@ export const FILTER_PRODUCTS = "FILTER_PRODUCTS"
 export const SET_PRODUCTS = "SET_PRODUCTS"
 export const FETCHING_PRODUCTS = "FETCHING"
 export const FILTER_PRODUCTS_TYPE = "FILTER_PRODUCTS_TYPE"
+export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR"
 
 export const getProductDetail = (id) => ({
   type: GET_PRODUCT_DETAIL,
@@ -33,4 +34,8 @@ export const setProductType = filter => ({
 export const setProducts = products => ({
   type: SET_PRODUCTS,
   products
+})
+
+export const toggleSidebar = ({
+  type: TOGGLE_SIDEBAR
 })

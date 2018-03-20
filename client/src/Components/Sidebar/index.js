@@ -29,7 +29,7 @@ const PilasFilters = ({ handleChangeSelect, filters }, ...props) => {
       <MenuItem value={"mimic"} primaryText="Mimic" />
     </SelectField>
 
-    <SelectField
+{/*     <SelectField
       labelStyle={{ color: 'white' }}
       floatingLabelStyle={{ color: 'white' }}
       floatingLabelText="Modelo"
@@ -40,7 +40,7 @@ const PilasFilters = ({ handleChangeSelect, filters }, ...props) => {
       <MenuItem value={10} primaryText="10 mm" />
       <MenuItem value={12} primaryText="12 mm" />
       <MenuItem value={14} primaryText="14 mm" />
-    </SelectField>
+    </SelectField> */}
 
     <SelectField
       labelStyle={{ color: 'white' }}
@@ -108,7 +108,7 @@ class Sidebar extends React.Component {
 
   constructor(props) {
     super(props)
-
+    console.log(props)
     this.state = {
       filtros: {
         medida: 0,

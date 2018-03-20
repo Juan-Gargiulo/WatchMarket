@@ -23,14 +23,14 @@ class App extends Component {
             navVisible: !this.state.navVisible
         })
     }
-    
+
     render() {
         return (
                 <Container>
                     <Header toggleSidebar={this.toggleSidebar}/>
                     <Body>
                         <Sidebar navVisible={this.state.navVisible}/>
-                        <Routes />
+                        <Routes toggleSidebar={this.toggleSidebar}/>
                     </Body>
                 </Container>
 
