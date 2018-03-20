@@ -261,10 +261,6 @@ class FormPilas extends Component {
                 value={this.state.filtros.brand}
                 onChange={this.handleChangeSelect("brand")}
               >
-<<<<<<< HEAD
-                <MenuItem value={0} primaryText="todas" />
-=======
->>>>>>> a4a2123ec8ce16df935eb523f93a5b580b4d8699
                 <MenuItem value={"renata"} primaryText="Renata" />
                 <MenuItem value={"sony"} primaryText="Sony" />
                 <MenuItem value={"mimic"} primaryText="Mimic" />
