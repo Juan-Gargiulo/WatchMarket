@@ -196,8 +196,62 @@ class FormPilas extends Component {
                 value={this.state.filtros.model}
                 onChange={this.handleChangeSelect("model")}
               >
-                <MenuItem value={"modelo1"} primaryText="modelo 1" />
-                <MenuItem value={"modelo2"} primaryText="modelo 2" />
+                <MenuItem value={"301"} primaryText="301" />
+                <MenuItem value={"303"} primaryText="303" />
+                <MenuItem value={"309"} primaryText="309" />
+                <MenuItem value={"315"} primaryText="315" />
+                <MenuItem value={"317"} primaryText="317" />
+                <MenuItem value={"319"} primaryText="319" />
+                <MenuItem value={"321"} primaryText="321" />
+                <MenuItem value={"329"} primaryText="329" />
+                <MenuItem value={"335"} primaryText="335" />
+                <MenuItem value={"337"} primaryText="337" />
+                <MenuItem value={"339"} primaryText="339" />
+                <MenuItem value={"341"} primaryText="341" />
+                <MenuItem value={"344"} primaryText="344" />
+                <MenuItem value={"346"} primaryText="346" />
+                <MenuItem value={"350"} primaryText="350" />
+                <MenuItem value={"357"} primaryText="357" />
+                <MenuItem value={"361"} primaryText="361" />
+                <MenuItem value={"362"} primaryText="362" />
+                <MenuItem value={"364"} primaryText="364" />
+                <MenuItem value={"365"} primaryText="365" />
+                <MenuItem value={"366"} primaryText="366" />
+                <MenuItem value={"370"} primaryText="370" />
+                <MenuItem value={"371"} primaryText="371" />
+                <MenuItem value={"373"} primaryText="373" />
+                <MenuItem value={"376"} primaryText="376" />
+                <MenuItem value={"377"} primaryText="377" />
+                <MenuItem value={"379"} primaryText="379" />
+                <MenuItem value={"380"} primaryText="380" />
+                <MenuItem value={"381"} primaryText="381" />
+                <MenuItem value={"384"} primaryText="384" />
+                <MenuItem value={"386"} primaryText="386" />
+                <MenuItem value={"389"} primaryText="389" />
+                <MenuItem value={"390"} primaryText="390" />
+                <MenuItem value={"391"} primaryText="391" />
+                <MenuItem value={"392"} primaryText="392" />
+                <MenuItem value={"393"} primaryText="393" />
+                <MenuItem value={"394"} primaryText="394" />
+                <MenuItem value={"395"} primaryText="395" />
+                <MenuItem value={"396"} primaryText="396" />
+                <MenuItem value={"397"} primaryText="397" />
+                <MenuItem value={"399"} primaryText="399" />
+                <MenuItem value={"LR44"} primaryText="LR44" />
+                <MenuItem value={"CR1025"} primaryText="CR1025" />
+                <MenuItem value={"CR1216"} primaryText="CR1216" />
+                <MenuItem value={"CR1220"} primaryText="CR1220" />
+                <MenuItem value={"CR1225"} primaryText="CR1225" />
+                <MenuItem value={"CR1616"} primaryText="CR1616" />
+                <MenuItem value={"CR1620"} primaryText="CR1620" />
+                <MenuItem value={"CR1632"} primaryText="CR1632" />
+                <MenuItem value={"CR2016"} primaryText="CR2016" />
+                <MenuItem value={"CR2025"} primaryText="CR2025" />
+                <MenuItem value={"CR2032"} primaryText="CR2032" />
+                <MenuItem value={"CR2320"} primaryText="CR2320" />
+                <MenuItem value={"CR2325"} primaryText="CR2325" />
+                <MenuItem value={"CR2430"} primaryText="CR2430" />
+                <MenuItem value={"CR2450N"} primaryText="CR2450N" />
               </SelectField>
               <br />
 
@@ -207,7 +261,10 @@ class FormPilas extends Component {
                 value={this.state.filtros.brand}
                 onChange={this.handleChangeSelect("brand")}
               >
+<<<<<<< HEAD
                 <MenuItem value={0} primaryText="todas" />
+=======
+>>>>>>> a4a2123ec8ce16df935eb523f93a5b580b4d8699
                 <MenuItem value={"renata"} primaryText="Renata" />
                 <MenuItem value={"sony"} primaryText="Sony" />
                 <MenuItem value={"mimic"} primaryText="Mimic" />
@@ -222,9 +279,9 @@ class FormPilas extends Component {
                 value={this.state.filtros.origin}
                 onChange={this.handleChangeSelect("origin")}
               >
+                <MenuItem value={"suiza"} primaryText="Suiza" />
+                <MenuItem value={"japon"} primaryText="Japon" />
                 <MenuItem value={"china"} primaryText="China" />
-                <MenuItem value={"usa"} primaryText="EEUU" />
-                <MenuItem value={"brasil"} primaryText="Brasil" />
               </SelectField>
               <br />
               <br />

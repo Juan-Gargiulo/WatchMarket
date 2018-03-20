@@ -9,8 +9,7 @@ Cloudinary.config(cloudinaryConfig);
 const malla = require("../models/malla");
 
 // READ ALL
-router.get("/mallas", (req, res, next) => {
-  
+router.get("/mallas", (req, res, next) => {  
   malla.find(req.query, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
@@ -18,20 +17,12 @@ router.get("/mallas", (req, res, next) => {
 });
 
 // READ ACTIVES
-/* router.get("/mallas/actives", (req, res, next) => {
+router.get("/mallas/actives", (req, res, next) => {
   malla.find({ active: true }, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
   });
-}); */
-
-// READ BY TYPE
-/* router.get('/mallas/:type',(req,res,next)=> {
-  malla.find({type: req.params.type},function(err,response){
-    if(err) res.status(500).json(err);
-    res.status(200).json(response);
-  })
-}) */
+}); 
 
 router.get("/mallas/:code", (req, res, next) => {
   malla.find({ code: req.params.code }, function(err, response) {
@@ -87,7 +78,7 @@ router.put("/mallas/:code", upload.single("images"), (req, res) => {
     description: req.body.description,
     price_dolar: req.body.price_dolar,
     price_args: req.body.price_args,
-    active: true
+    active: req.body.active
   };
   if (req.file) {
     Cloudinary.v2.uploader.upload(req.file.path, (err, result) => {

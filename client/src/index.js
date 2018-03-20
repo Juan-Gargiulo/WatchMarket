@@ -21,7 +21,11 @@ const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(sagaMiddleware),
+<<<<<<< HEAD
         //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+=======
+       // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+>>>>>>> a4a2123ec8ce16df935eb523f93a5b580b4d8699
     )
 )
 
