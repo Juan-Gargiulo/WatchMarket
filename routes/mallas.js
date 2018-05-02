@@ -4,12 +4,13 @@ var cloudinaryConfig = require("../config/cloudinaryCong.json");
 var Cloudinary = require("cloudinary");
 var multer = require("multer");
 var upload = multer({ dest: "uploads/" });
+
 Cloudinary.config(cloudinaryConfig);
 
 const malla = require("../models/malla");
 
 // READ ALL
-router.get("/mallas", (req, res, next) => {  
+router.get("/mallas", (req, res, next) => {
   malla.find(req.query, function(err, response) {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
@@ -22,7 +23,7 @@ router.get("/mallas/actives", (req, res, next) => {
     if (err) res.status(500).json(err);
     res.status(200).json(response);
   });
-}); 
+});
 
 router.get("/mallas/:code", (req, res, next) => {
   malla.find({ code: req.params.code }, function(err, response) {

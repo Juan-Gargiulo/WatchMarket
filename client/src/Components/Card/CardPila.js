@@ -48,12 +48,12 @@ const Desc = ({title, children}) => {
 				color: 'black',
 				margin: '5px 0px 5px 5px'
 			},
-			title: {marginLeft: 5, width: 60}
+			title: {marginLeft: 5, width: 80}
 		}
 
     return <div style={styles.content}>
 				<strong style={styles.title}>{`${title}:`}</strong>
-        {children}
+                {children}
     </div>
 }
 
@@ -65,14 +65,14 @@ const Card = ({...props, product, animate}) => {
             <Link style={{textDecoration: 'none'}} to={`detail/${product.code}`}>
                 <ProductImg {...props} />
                     <List>
-                        <Desc title="Desc.">{`${product.description}`}</Desc>
+                        <Desc title="Desc.">{product.description}</Desc>
                         <Desc title="Tipo">{product.type}</Desc>
                         <Desc title="Subtipo">{product.subtype}</Desc>
                         <Desc title="Marca">{product.brand}</Desc>
                         <Desc title="Modelo">{product.model}</Desc>
                         <Desc title="Origen">{product.origin}</Desc>
-                        <Desc title="Dolares">{`${product.price_dolar}`}</Desc>
-                        <Desc title="Pesos">{`${product.price_args}`}</Desc>
+                        <Desc title="Dolares">{product.price_dolar}</Desc>
+                        <Desc title="Pesos">{product.price_args}</Desc>
                     </List>
                    {/*  <p>{card.cardDescription}</p> */}
             </Link>
