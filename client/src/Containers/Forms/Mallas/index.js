@@ -4,7 +4,7 @@ import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import Toggle from 'material-ui/Toggle';
+import Toggle from "material-ui/Toggle";
 
 import { Row, Col } from "react-grid-system";
 
@@ -74,6 +74,7 @@ class FormMallas extends Component {
           description: res.data[0].description,
           price_dolar: res.data[0].price_dolar,
           price_args: res.data[0].price_args,
+          active: res.data[0].active,
           filtros: {
             length: res.data[0].length,
             origin: res.data[0].origin,
@@ -101,6 +102,7 @@ class FormMallas extends Component {
     formData.append("description", this.state.description);
     formData.append("price_dolar", this.state.price_dolar);
     formData.append("price_args", this.state.price_args);
+    formData.append("active", this.state.active);
 
     const config = {
       headers: { "content-type": "multipart/form-data" }
@@ -122,7 +124,7 @@ class FormMallas extends Component {
           <Col sm={3} />
           <Col xs={12} sm={6}>
             <Paper style={styles.paper}>
-              <h1>Mallas</h1>
+              <h1>Alta Mallas</h1>
               <TextField
                 name="code"
                 hintText="Codigo"
@@ -252,23 +254,17 @@ class FormMallas extends Component {
                   label="Activo"
                   toggled={this.state.active}
                   disabled={!this.state.isUpdate}
-                  onToggle={(e,c) => this.setState({active: c}) }
+                  onToggle={(e, c) => this.setState({ active: c })}
                 />
               </div>
               <br />
 
-              <input type="file" name="images" onChange={this.onChangeFile} /><br />
+              <input type="file" name="images" onChange={this.onChangeFile} />
+              <br />
 
               <div>
-              <RaisedButton
-                style={{left: 0}}
-                label="Guardar"
-                primary={true}
-                onClick={this.onFormSubmit}
-              />
+                <RaisedButton style={{ left: 0 }} label="Guardar" primary={true} onClick={this.onFormSubmit} />
               </div>
-
-
             </Paper>
           </Col>
           <Col sm={3} />

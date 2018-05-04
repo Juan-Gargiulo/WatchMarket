@@ -2,6 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../../core/cards/cardsActions'
 
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
 import { compose, withProps, lifecycle } from 'recompose'
 import withLoading from '../Hocs/LoadingHoc'
 
@@ -53,14 +57,22 @@ const renderProducts = (products, productType) => products.map((product, key) =>
 const MallasNavBar = props => (
   <div>
     <PageTitle title={'Mallas'} />
-    <Link to={`/mallas`}>{"Alta - Modificación"}</Link>
-  </div>
+    <Link to={"/mallas"}>
+      <RaisedButton label="Nuevo" secondary={true} style={{marginLeft: "20px"}}/>
+	</Link>
+
+  </div>    
+  
+  
+
 )
 
 const PilasNavBar = props => (
   <div>
     <PageTitle title={'Pilas'} />
-    <Link to={`/pilas`}>{"Alta - Modificación"}</Link>
+    <Link to={"/pilas"}>
+      <RaisedButton label="Nuevo" secondary={true} style={{marginLeft: "20px"}}/>
+	</Link>
   </div>
 )
 

@@ -3,9 +3,9 @@ const router = express.Router();
 
 const User = require("../models/user");
 
-router.post("/", (req, res) => {http://localhost:3000/
+router.post("/", (req, res) => {
   const newUser = new User({
-    firstName: req.body.firstName,
+    firstName: rconsteq.body.firstName,
     lastName: req.body.lastName,
     email: req.body.mail,
     password: req.body.password

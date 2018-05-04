@@ -1,23 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Gallery from '../Gallery'
-import Detail from '../Detail'
-import FormMallas from '../Forms/Mallas'
-import FormsPilas from '../Forms/Pilas'
+import Gallery from "../Gallery";
+import Detail from "../Detail";
+import FormMallas from "../Forms/Mallas";
+import FormsPilas from "../Forms/Pilas";
 
-import { Container } from './style.js'
+import { Container } from "./style.js";
 
 export const paths = {
-  GALLERY: '/',
-  CARD_DETAIL: '/detail/:id',
-  FORMMALLAS: '/mallas',
-  FORMPILAS: '/pilas'
+  GALLERY: "/",
+  CARD_DETAIL: "/detail/:id",
+  FORMMALLAS: "/mallas",
+  FORMPILAS: "/pilas"
 };
 
 const routes = [
@@ -43,14 +39,10 @@ const routes = [
   }
 ];
 
-
-
-export const Routes = ({...props}) => (
-    <Router>
-        <Container>
-          <Switch>
-            { routes.map( (route, key) => <Route key={key} {...route} /> ) }
-          </Switch>
-        </Container>
-    </Router>
-)
+export const Routes = ({ ...props }) => (
+  <Router>
+    <Container>
+      <Switch>{routes.map((route, key) => <Route key={key} {...route} />)}</Switch>
+    </Container>
+  </Router>
+);

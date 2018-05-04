@@ -1,15 +1,11 @@
-import React, { Component } from "react";
-
-import SelectField from "material-ui/SelectField";
+import { get, post, put } from "axios";
 import MenuItem from "material-ui/MenuItem";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
-
-import { Row, Col } from "react-grid-system";
-
 import Paper from "material-ui/Paper";
-
-import { post, get, put } from "axios";
+import RaisedButton from "material-ui/RaisedButton";
+import SelectField from "material-ui/SelectField";
+import TextField from "material-ui/TextField";
+import React, { Component } from "react";
+import { Col, Row } from "react-grid-system";
 
 const styles = {
   paper: {
@@ -70,6 +66,7 @@ class FormPilas extends Component {
             price_dolar: res.data[0].price_dolar,
             brand: res.data[0].brand,
             price_args: res.data[0].price_args,
+            active: res.data[0].active,
             filtros: {
               model: res.data[0].model,
               length: res.data[0].length,
@@ -99,6 +96,7 @@ class FormPilas extends Component {
     formData.append("description", this.state.description);
     formData.append("price_dolar", this.state.price_dolar);
     formData.append("price_args", this.state.price_args);
+    formData.append("active", this.state.active);
 
     const config = {
       headers: { "content-type": "multipart/form-data" }
@@ -118,7 +116,7 @@ class FormPilas extends Component {
           <Col sm={3} />
           <Col xs={12} sm={6}>
             <Paper style={styles.paper}>
-              <h1>Formuilario Pilas</h1>
+              <h1>Alta Pilas</h1>
               <TextField
                 name="code"
                 hintText="Codigo"
@@ -190,7 +188,7 @@ class FormPilas extends Component {
                 </SelectField>
               )}
 
-                <SelectField
+              <SelectField
                 fullWidth
                 floatingLabelText="Modelo"
                 value={this.state.filtros.model}
@@ -255,7 +253,7 @@ class FormPilas extends Component {
               </SelectField>
               <br />
 
-               <SelectField
+              <SelectField
                 fullWidth
                 floatingLabelText="Marca"
                 value={this.state.filtros.brand}
@@ -266,8 +264,6 @@ class FormPilas extends Component {
                 <MenuItem value={"mimic"} primaryText="Mimic" />
               </SelectField>
               <br />
-
-
 
               <SelectField
                 fullWidth
