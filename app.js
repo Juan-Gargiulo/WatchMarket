@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use("/api", mallas);
 app.use("/api", pilas);
-app.use("/api/user  ", user);
+app.use("/api/user", user);
 //app.use('/admin',abmMallas);
 
 app.get("*", (req, res) => {

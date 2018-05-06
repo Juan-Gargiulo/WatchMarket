@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 //import { COLOR } from '../../common/colors'
 
 import Paper from 'material-ui/Paper';
+import RaisedButton from "material-ui/RaisedButton";
 
 const Container = styled.div`
     display: block;
@@ -64,7 +65,7 @@ const Card = ({...props, product, animate}) => {
         <Container animate={animate}>
         <Paper zDepth={3}>
 								<span>{product.code}</span>
-            <Link style={{textDecoration: 'none'}} to={`detail/${product.code}`}>
+
                 <ProductImg {...props} />
                     <List>
                         <Desc title="desc">{product.description}</Desc>
@@ -77,7 +78,7 @@ const Card = ({...props, product, animate}) => {
                         <Desc title="pesos">{product.price_args}</Desc>
                     </List>
                    {/*  <p>{card.cardDescription}</p> */}
-            </Link>
+                   <RaisedButton label={"comprar"} primary style={{marginLeft: 220, marginBottom: 5}}/>
             </Paper>
         </Container>
     )

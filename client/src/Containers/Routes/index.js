@@ -6,6 +6,8 @@ import Gallery from "../Gallery";
 import Detail from "../Detail";
 import FormMallas from "../Forms/Mallas";
 import FormsPilas from "../Forms/Pilas";
+import Login from "../Login";
+import Register from "../Login/register";
 
 import { Container } from "./style.js";
 
@@ -13,7 +15,9 @@ export const paths = {
   GALLERY: "/",
   CARD_DETAIL: "/detail/:id",
   FORMMALLAS: "/mallas",
-  FORMPILAS: "/pilas"
+  FORMPILAS: "/pilas",
+  LOGIN: "/login",
+  REGISTER: "/register"
 };
 
 const routes = [
@@ -25,6 +29,14 @@ const routes = [
   {
     path: paths.CARD_DETAIL,
     render: props => <Detail title="Detail" {...props} />
+  },
+  {
+    path: paths.LOGIN,
+    render: props => <Login title="Login" {...props} />
+  },
+  {
+    path: paths.REGISTER,
+    render: props => <Register title="Register" {...props} />
   },
   {
     path: paths.FORMMALLAS,

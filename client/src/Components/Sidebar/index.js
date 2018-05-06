@@ -186,8 +186,6 @@ class Sidebar extends React.Component {
     const { setProductType, productType } = this.props;
     const { filtros } = this.state;
 
-    console.log(this.props);
-
     return (
       <Container {...this.props}>
         <RadioGroup radioSelected={setProductType} />

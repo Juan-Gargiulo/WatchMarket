@@ -1,0 +1,7 @@
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGIN_OK = "USER_LOGIN_OK";
+export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";
+export const USER_SET_USER = "USER_LOGIN";
+export const USER_REGISTER = "USER_REGISTER";
+export const USER_REGISTER_OK = "USER_REGISTER_OK";
+export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";

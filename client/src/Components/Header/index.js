@@ -1,29 +1,42 @@
-import React from 'react';
+import React from "react";
 
-import styled from 'styled-components';
-import { COLOR } from '../../common/colors'
+import { connect } from "react-redux";
+
+import styled from "styled-components";
+import { COLOR } from "../../common/colors";
+
+import RaisedButton from "material-ui/RaisedButton";
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 0 20px 0 20px;
-    height: 60px;
-    background-color: ${COLOR.secondaryColor};
-`
+  display: flex;
+  align-items: center;
+  padding: 0 20px 0 20px;
+  height: 60px;
+  background-color: ${COLOR.secondaryColor};
+`;
 
 export const Logo = styled.img.attrs({
-    src: '../img/avalith.png'
+  src: "../img/avalith.png"
 })`
-    height: 39px;
-    width: 35px;
-`
+  height: 39px;
+  width: 35px;
+`;
 
-const Header = ({toggleSidebar, ...props}) => {
-    return (
-        <Container primary>
-            <Logo onClick={toggleSidebar}/>
-        </Container>
-    )
-}
+const Header = ({ toggleSidebar, user, ...props }) => {
+  console.log(user);
 
-export default Header
+  //const isLoged = () => JSON.stringify(user) !== "{}";
+
+  return (
+    <Container primary>
+      <Logo onClick={toggleSidebar} />
+      {user && <RaisedButton label={user.email} primary style={{ marginLeft: "auto" }} />}
+    </Container>
+  );
+};
+
+export default connect(state => {
+  return {
+    user: state.user.user
+  };
+}, null)(Header);

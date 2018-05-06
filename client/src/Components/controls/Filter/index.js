@@ -7,8 +7,8 @@ import { productTypes } from '../../../core/constants'
 export const stylesDefautl = {
   container: {padding: '25px 20px 10px 25px'},
   span: {fontSize: '1.1em', color: COLOR.primaryColorStrong},
-  labelStyle: {color: COLOR.primaryColorStrong },
-  iconStyle: {fill: COLOR.primaryColor},
+  labelStyle: {color: 'white' },
+  iconStyle: {fill: 'white'},
   style: {marginTop: '15px'}
 };
 

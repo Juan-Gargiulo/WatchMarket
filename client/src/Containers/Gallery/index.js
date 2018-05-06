@@ -58,7 +58,7 @@ const MallasNavBar = props => (
   <div>
     <PageTitle title={'Mallas'} />
     <Link to={"/mallas"}>
-      <RaisedButton label="Nuevo" secondary={true} style={{marginLeft: "20px"}}/>
+      <RaisedButton label="Agregar / Editar" primary style={{marginLeft: "20px"}}/>
 	</Link>
 
   </div>    
@@ -71,7 +71,7 @@ const PilasNavBar = props => (
   <div>
     <PageTitle title={'Pilas'} />
     <Link to={"/pilas"}>
-      <RaisedButton label="Nuevo" secondary={true} style={{marginLeft: "20px"}}/>
+      <RaisedButton label="Agregar / Editar" primary style={{marginLeft: "20px"}}/>
 	</Link>
   </div>
 )

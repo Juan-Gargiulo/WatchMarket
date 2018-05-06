@@ -1,18 +1,26 @@
 const mongoose = require("mongoose"),
-      Schema = mongoose.Schema,
-      bcrypt = require("bcrypt");
+  Schema = mongoose.Schema,
+  bcrypt = require("bcrypt");
 
 const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  email: { type: String, required: true, index: { unique: true } },
+  fullName: {
+    type: String,
+    required: [true, "el nombre es requerido"]
+  },
+  email: {
+    type: String,
+    index: true,
+    required: [true, "el email es requerido"],
+    unique: [true, "Ya existe el mail"]
+  },
   password: { type: String, required: true },
-  admin: { type: Boolean, requires: true }
+  phone: { type: Number, required: true },
+  admin: { type: Boolean, requires: true, default: false }
 });
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre("save", function(next) {
   var user = this;
 
   // only hash the password if it has been modified (or is new)
@@ -33,14 +41,20 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-			if (err) return cb(err);
-			cb(null, isMatch);
-	});
+  console.log(this.password);
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
 };
 
-const User = mongoose.model('User', UserSchema);
+UserSchema.methods.toJSON = function() {
+  var obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 
-module.exports = User
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;
