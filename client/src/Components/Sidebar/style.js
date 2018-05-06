@@ -11,7 +11,8 @@ export const Container = styled.div`
 
     display: ${props => (props.navVisible ? "block" : "none")} ;
     width: 300px;
-    height: calc(100vh - 60px);
+    height: 100%;
+    
     background-color: ${COLOR.secondaryColor};
     padding: 0px 10px 0px 10px;
 `;
