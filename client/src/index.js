@@ -1,31 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../src/Containers/App'
-import registerServiceWorker from './registerServiceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "../src/Containers/App";
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { injectGlobal } from 'styled-components';
-import Roboto from './Roboto.ttf';
-import RobotoLight from './Roboto-Light.ttf'
+import { Routes } from "./Containers/Routes";
 
-import createSagaMiddleware from 'redux-saga'
-import { createStore, applyMiddleware, compose } from 'redux'
-import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import rootSagas from './core/rootSagas'
-import rootReducer from './core/rootReducer'
+import registerServiceWorker from "./registerServiceWorker";
 
-const sagaMiddleware = createSagaMiddleware()
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { injectGlobal } from "styled-components";
+import Roboto from "./Roboto.ttf";
+import RobotoLight from "./Roboto-Light.ttf";
+
+import createSagaMiddleware from "redux-saga";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+
+import rootSagas from "./core/rootSagas";
+import rootReducer from "./core/rootReducer";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-    rootReducer,
-    compose(
-        applyMiddleware(sagaMiddleware),
-       // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-)
+  rootReducer,
+  compose(applyMiddleware(sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+);
 
-sagaMiddleware.run(rootSagas)
+sagaMiddleware.run(rootSagas);
 
 injectGlobal`
     @font-face {
@@ -41,16 +43,14 @@ injectGlobal`
     body{
         font-family: Roboto;
     }
-`
+`;
 
 ReactDOM.render(
-    <Provider store={store}>
-        <MuiThemeProvider>
-            <App />
-        </MuiThemeProvider>
-    </Provider>
-    , document.getElementById('root')
+  <Provider store={store}>
+    <MuiThemeProvider>
+      <Routes />
+    </MuiThemeProvider>
+  </Provider>,
+  document.getElementById("root")
 );
 registerServiceWorker();
-
-

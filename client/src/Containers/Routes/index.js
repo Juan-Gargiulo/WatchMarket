@@ -9,6 +9,8 @@ import FormsPilas from "../Forms/Pilas";
 import Login from "../Login";
 import Register from "../Login/register";
 
+import Layout from "../App/Layout";
+
 import { Container } from "./style.js";
 
 export const paths = {
@@ -24,27 +26,27 @@ const routes = [
   {
     exact: true,
     path: paths.GALLERY,
-    render: props => <Gallery title="Gallery" {...props} />
+    render: props => <Layout component={Gallery} {...props} />
   },
-  {
+  /*   {
     path: paths.CARD_DETAIL,
     render: props => <Detail title="Detail" {...props} />
-  },
+  }, */
   {
     path: paths.LOGIN,
-    render: props => <Login title="Login" {...props} />
+    render: props => <Layout component={Login} {...props} />
   },
   {
     path: paths.REGISTER,
-    render: props => <Register title="Register" {...props} />
+    render: props => <Layout component={Register} {...props} />
   },
   {
     path: paths.FORMMALLAS,
-    render: props => <FormMallas title="Table" {...props} />
+    render: props => <Layout component={FormMallas} {...props} />
   },
   {
     path: paths.FORMPILAS,
-    render: props => <FormsPilas title="Table" {...props} />
+    render: props => <Layout component={FormsPilas} {...props} />
   },
   {
     component: () => <h3>No match for this route></h3>
@@ -53,8 +55,6 @@ const routes = [
 
 export const Routes = ({ ...props }) => (
   <Router>
-    <Container>
-      <Switch>{routes.map((route, key) => <Route key={key} {...route} />)}</Switch>
-    </Container>
+    <Switch>{routes.map((route, key) => <Route key={key} {...route} />)}</Switch>
   </Router>
 );
