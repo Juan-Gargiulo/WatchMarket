@@ -11,6 +11,7 @@ const db = require("./models/db");
 var mallas = require("./routes/mallas");
 var pilas = require("./routes/pilas");
 var user = require("./routes/users");
+var purchase = require("./routes/purchase")
 //var abmMallas = require('./routes/abms/abmMallas');
 
 var app = express();
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use("/api", mallas);
 app.use("/api", pilas);
 app.use("/api/user", user);
+app.use("/api/purchase", purchase)
 //app.use('/admin',abmMallas);
 
 app.get("*", (req, res) => {

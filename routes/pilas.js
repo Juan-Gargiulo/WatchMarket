@@ -3,7 +3,7 @@ var router = express.Router();
 var cloudinaryConfig = require('../config/cloudinaryCong.json')
 var Cloudinary = require('cloudinary');
 var multer = require('multer');
-var upload = multer({ dest: 'uploads/' })
+var upload = multer()
 Cloudinary.config(cloudinaryConfig);
 
 const pila = require('../models/pila');
