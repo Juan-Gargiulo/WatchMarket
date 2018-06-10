@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { NavLink } from 'react-router-dom'
 
 import { Redirect } from "react-router";
 
 import { userLogin } from "../../core/user/actions";
 
-import { Col, Row, Container } from "react-grid-system";
 
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -41,11 +41,12 @@ class Login extends Component {
     const styles = {
       container: {
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         height: 600
       },
-      loginBox: { border: "1px solid grey", padding: "10px 10px 10px 10px" },
+      loginBox: { border: "1px solid grey", padding: "10px 10px 10px 10px", marginBottom: 20 },
       error: { color: "red" }
     };
 
@@ -62,9 +63,11 @@ class Login extends Component {
           <RaisedButton label="Login" primary onClick={this.handleLogin} />
           <br />
           <br />
-
           <span style={styles.error}>{this.props.error}</span>
         </div>
+        <div>
+          <NavLink to={'/register'}>Registrarse</NavLink>  
+        </div> 
       </div>
     );
   }

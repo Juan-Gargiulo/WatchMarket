@@ -2,13 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
-
-
 import { Link } from 'react-router-dom'
-
-//import { COLOR } from '../../common/colors'
+import { withRouter } from 'react-router'
 
 import Paper from 'material-ui/Paper';
+import RaisedButton from "material-ui/RaisedButton";
 
 const Container = styled.div`
     display: block;
@@ -25,9 +23,6 @@ const Container = styled.div`
             transform: scale(1.02);
         }` : ""}
 `
-/* const Description = styled.div`
-    color: ${COLOR.primaryFontColor};
-` */
 
 const ProductImg = styled.img.attrs({
     src: props => props.product.imgurl
@@ -48,7 +43,7 @@ const Desc = ({title, children}) => {
 				color: 'black',
 				margin: '5px 0px 5px 5px'
 			},
-			title: {marginLeft: 5, width: 80}
+            title: {marginLeft: 5, width: 80}
 		}
 
     return <div style={styles.content}>
@@ -57,11 +52,24 @@ const Desc = ({title, children}) => {
     </div>
 }
 
-const Card = ({...props, product, animate}) => {
+const Card = ({...props, product, animate, history, isLoged}) => {
+
+    const styles = {
+        productCode: {color: 'gray'}
+    }
+
+    const comprar = () => {
+        if (isLoged) {
+            alert('agrega al carrito')
+        }else{
+            history.push('/register')
+        }
+    }
+
     return (
         <Container animate={animate}>
         <Paper zDepth={3}>
-								<span>{product.code}</span>
+            <span style={styles.productCode}>`{`Codigo: ${product.code}`}</span>
             <Link style={{textDecoration: 'none'}} to={`detail/${product.code}`}>
                 <ProductImg {...props} />
                     <List>
@@ -74,7 +82,7 @@ const Card = ({...props, product, animate}) => {
                         <Desc title="Dolares">{product.price_dolar}</Desc>
                         <Desc title="Pesos">{product.price_args}</Desc>
                     </List>
-                   {/*  <p>{card.cardDescription}</p> */}
+                    <RaisedButton label={"comprar"} primary style={styles.comprar} onClick={comprar}/>
             </Link>
             </Paper>
         </Container>
@@ -85,4 +93,4 @@ Card.propTypes = {
     product: PropTypes.object,
 };
 
-export default Card
+export default withRouter(Card)

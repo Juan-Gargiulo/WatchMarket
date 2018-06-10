@@ -23,7 +23,10 @@ import { Link } from 'react-router-dom'
 
 
 
-const Gallery = ({ ...props, products, fetching, getCards, productType, productFilters }) => {
+const Gallery = ({ products, productType, isLoged, isAdmin }) => {
+
+console.log(isAdmin)
+
    return (
       <Container {...this.props}>
             {
@@ -33,7 +36,7 @@ const Gallery = ({ ...props, products, fetching, getCards, productType, productF
             }
 
             <GalleryCont >
-            { renderProducts(products, productType) }
+            { renderProducts(products, productType, isLoged) }
             </GalleryCont>
 
       </Container>
@@ -41,13 +44,13 @@ const Gallery = ({ ...props, products, fetching, getCards, productType, productF
 }
 
 //const renderCards = cards => cards.map(card => <Card card={card} key={card.cardId} animate/>)
-const renderProducts = (products, productType) => products.map((product, key) => {
+const renderProducts = (products, productType, isLoged) => products.map((product, key) => {
 		switch (productType) {
 			case productTypes.MALLAS:
-				return <CardMalla key={key} product={product} animate />
+				return <CardMalla key={key} product={product} isLoged={isLoged} animate />
 				break;
 			case productTypes.PILAS:
-				return <CardPila key={key} product={product} animate />
+				return <CardPila key={key} product={product} isLoged={isLoged} animate />
 				break;
 			default:
 				break;
@@ -83,8 +86,9 @@ const enchanced = compose(
                   loading: state.products.fetching,
                   productType: state.products.productType,
                   productFilters: state.products.filters,
-                  products: productSelected(state)
-
+                  products: productSelected(state),
+                  isLoged: state.user.isLoged,
+                  isAdmin: state.user.isAdmin
             }),
             dispatch => ({
                   getProducts: productType => dispatch(getProducts(productType))

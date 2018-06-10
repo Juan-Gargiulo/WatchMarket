@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userRegister } from "../../core/user/actions";
+import { NavLink } from 'react-router-dom';
 
 import { Col, Row, Container } from "react-grid-system";
 
@@ -60,7 +61,7 @@ class Register extends Component {
 
   render() {
     const styles = {
-      container: { display: "flex", justifyContent: "center", alignItems: "center", height: 600 },
+      container: { display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center", height: 600 },
       registerBox: { border: "1px solid grey", padding: "10px 10px 10px 10px" }
     };
 
@@ -101,8 +102,15 @@ class Register extends Component {
             errorText={errors.phone}
           />
           <br />
-          <RaisedButton onClick={this.handleRegister} label="Registrar" primary onChange={this.handleLogin} />
+          <br />
+          <RaisedButton onClick={this.handleRegister} label="Registrarse" primary onChange={this.handleLogin} />
+          <div>
+            <br />
+            Ya posees una cuenta ?
+          <NavLink to={'/login'}>Logueate</NavLink>  
+        </div> 
         </div>
+
       </div>
     );
   }

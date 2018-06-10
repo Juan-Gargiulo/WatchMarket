@@ -10,7 +10,6 @@ import RaisedButton from "material-ui/RaisedButton";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 20px 0 20px;
   height: 60px;
   width: 100%;
   background-color: ${COLOR.secondaryColor};
@@ -24,10 +23,6 @@ export const Logo = styled.img.attrs({
 `;
 
 const Header = ({ toggleSidebar, user, ...props }) => {
-  console.log(props);
-
-  //const isLoged = () => JSON.stringify(user) !== "{}";
-
   return (
     <Container primary>
       <Logo onClick={toggleSidebar} />

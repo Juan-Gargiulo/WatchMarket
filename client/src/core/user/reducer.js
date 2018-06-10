@@ -2,6 +2,8 @@ import * as user from "./constants";
 
 const initialState = {
   user: null,
+  isLoged: false,
+  isAdmin: false,
   registerError: {},
   loginError: "",
   spinner: false
@@ -20,7 +22,9 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         loginError: "",
-        spinner: false
+        spinner: false,
+        isLoged: true,
+        isAdmin: action.payload.admin
       };
 
     case user.USER_LOGIN_ERROR:
@@ -28,7 +32,9 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: null,
         loginError: action.payload,
-        spinner: false
+        spinner: false,
+        isLoged: false,
+        isAdmin: false
       };
 
     case user.USER_REGISTER:
@@ -41,6 +47,8 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+        isAdmin: action.payload.admin,
+        isLoged: true,
         registerError: {},
         spinner: false
       };
@@ -49,6 +57,8 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: {},
+        isLoged: false,
+        isAdmin: false,
         registerError: action.payload,
         spinner: false
       };
@@ -57,6 +67,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+        isLoged: true,
         spinner: false
       };
 

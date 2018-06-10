@@ -162,7 +162,6 @@ const MallasFilters = ({ handleChangeSelect, filters }, ...props) => {
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       filtros: {
         medida: 0,
