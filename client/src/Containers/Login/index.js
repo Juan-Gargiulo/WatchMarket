@@ -63,11 +63,13 @@ class Login extends Component {
           <RaisedButton label="Login" primary onClick={this.handleLogin} />
           <br />
           <br />
+          <div>
+          <p>No posees una cuenta?</p>
+            <NavLink to={'/register'}><RaisedButton>Registrarse</RaisedButton></NavLink>  
+          </div> 
           <span style={styles.error}>{this.props.error}</span>
         </div>
-        <div>
-          <NavLink to={'/register'}>Registrarse</NavLink>  
-        </div> 
+
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import { COLOR } from '../../../common/colors'
+import { NavLink } from 'react-router-dom'
 
 import { productTypes } from '../../../core/constants'
 
@@ -15,10 +16,10 @@ export const stylesDefautl = {
 const RadioGroup = ({
   ...props, radioSelected,
   styles=stylesDefautl,
-  title = 'Productos'
+  title = 'PRODUCTOS'
 }) => (
   <div style={styles.container}>
-    <span style={styles.span}>{title}</span>
+    <NavLink to={'/'}><span style={styles.span}>{title}</span></NavLink>
     <RadioButtonGroup name="shipSpeed" defaultSelected={productTypes.MALLAS} onChange={radioSelected}>
       <RadioButton
         value={productTypes.MALLAS}

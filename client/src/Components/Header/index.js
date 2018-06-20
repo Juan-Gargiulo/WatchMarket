@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img.attrs({
-  src: "../img/avalith.png"
+  src: "../img/watch.png"
 })`
   height: 39px;
   width: 35px;
@@ -26,7 +26,7 @@ const Header = ({ toggleSidebar, user, ...props }) => {
   return (
     <Container primary>
       <Logo onClick={toggleSidebar} />
-      {user && <RaisedButton label={user.email} primary style={{ marginLeft: "auto" }} />}
+      {user && <RaisedButton label="salir" primary style={{ marginLeft: "auto" }} />}
     </Container>
   );
 };

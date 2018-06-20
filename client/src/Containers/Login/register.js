@@ -106,8 +106,8 @@ class Register extends Component {
           <RaisedButton onClick={this.handleRegister} label="Registrarse" primary onChange={this.handleLogin} />
           <div>
             <br />
-            Ya posees una cuenta ?
-          <NavLink to={'/login'}>Logueate</NavLink>  
+            <p>Ya posees una cuenta?</p>
+          <NavLink to={'/login'}><RaisedButton>Ingresar</RaisedButton></NavLink>  
         </div> 
         </div>
 

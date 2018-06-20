@@ -31,8 +31,8 @@ console.log(isAdmin)
       <Container {...this.props}>
             {
               productType === productTypes.MALLAS ?
-              <MallasNavBar /> :
-              <PilasNavBar />
+              isAdmin && <MallasNavBar /> :
+              isAdmin && <PilasNavBar />
             }
 
             <GalleryCont >
@@ -63,11 +63,7 @@ const MallasNavBar = props => (
     <Link to={"/mallas"}>
       <RaisedButton label="Agregar / Editar" primary style={{marginLeft: "20px"}}/>
 	</Link>
-
   </div>    
-  
-  
-
 )
 
 const PilasNavBar = props => (
