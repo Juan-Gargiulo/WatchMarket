@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../../core/cards/cardsActions'
+import { addToChart } from '../../core/purchases/actions'
+import { openModal, closeModal } from '../../core/app/actions'
 
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
 
 import { compose, withProps, lifecycle } from 'recompose'
 import withLoading from '../Hocs/LoadingHoc'
@@ -23,11 +23,17 @@ import { Link } from 'react-router-dom'
 
 
 
-const Gallery = ({ products, productType, isLoged, isAdmin }) => {
-
-console.log(isAdmin)
-
-   return (
+const Gallery = ({ 
+      products, 
+      productType, 
+      user, 
+      isLoged, 
+      isAdmin,
+      addToChart,
+      openModal,
+      closeModal,
+      modal
+}) => (
       <Container {...this.props}>
             {
               productType === productTypes.MALLAS ?
@@ -36,21 +42,39 @@ console.log(isAdmin)
             }
 
             <GalleryCont >
-            { renderProducts(products, productType, isLoged) }
+            { renderProducts(products, productType, user, isLoged, addToChart, openModal, closeModal, modal) }
             </GalleryCont>
 
       </Container>
-   )
-}
+)
+
 
 //const renderCards = cards => cards.map(card => <Card card={card} key={card.cardId} animate/>)
-const renderProducts = (products, productType, isLoged) => products.map((product, key) => {
+const renderProducts = (products, productType, user, isLoged, addToChart, openModal, closeModal, modal) => products.map((product, key) => {
 		switch (productType) {
 			case productTypes.MALLAS:
-				return <CardMalla key={key} product={product} isLoged={isLoged} animate />
+                        return <CardMalla 
+                              key={key} 
+                              product={product} 
+                              user={user} 
+                              isLoged={isLoged} 
+                              addToChart={addToChart} 
+                              openModal={openModal}
+                              closeModal={closeModal}
+                              modal={modal}
+                              animate />
 				break;
 			case productTypes.PILAS:
-				return <CardPila key={key} product={product} isLoged={isLoged} animate />
+                        return <CardPila 
+                              key={key} 
+                              product={product} 
+                              user={user} 
+                              isLoged={isLoged} 
+                              addToChart={addToChart} 
+                              openModal={openModal}
+                              closeModal={closeModal}
+                              modal={modal}
+                              animate />
 				break;
 			default:
 				break;
@@ -83,11 +107,16 @@ const enchanced = compose(
                   productType: state.products.productType,
                   productFilters: state.products.filters,
                   products: productSelected(state),
+                  user: state.user.user,
                   isLoged: state.user.isLoged,
-                  isAdmin: state.user.isAdmin
+                  isAdmin: state.user.isAdmin,
+                  modal: state.app.modal
             }),
             dispatch => ({
-                  getProducts: productType => dispatch(getProducts(productType))
+                  getProducts: productType => dispatch(getProducts(productType)),
+                  addToChart: product => dispatch(addToChart(product)),
+                  openModal: () => dispatch(openModal()),
+                  closeModal: () => dispatch(closeModal())
             })
       ),
       withProps({

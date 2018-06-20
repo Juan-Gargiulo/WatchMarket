@@ -1,0 +1,2 @@
+export const APP_OPEN_MODAL = "APP_OPEN_MODAL"
+export const APP_CLOSE_MODAL = "APP_CLOSE_MODAL"

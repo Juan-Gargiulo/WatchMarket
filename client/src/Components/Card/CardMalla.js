@@ -6,22 +6,48 @@ import { Container, ProductImg, ProductCode } from './styles'
 
 import Paper from 'material-ui/Paper';
 import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/FlatButton";
+import Dialog from 'material-ui/Dialog';
 
 import Desc from './Description'
 
 
-const Card = ({...props, product, animate, isLoged, history}) => {
+const Card = ({...props, product, animate, isLoged, history, addToChart, openModal, closeModal, modal}) => {
 
-    const comprar = (product) => {
+    const actions = [
+        <FlatButton
+          label="Cancelar"
+          primary={true}
+          onClick={closeModal}
+        />,
+        <FlatButton
+          label="Comprar"
+          primary={true}
+          onClick={() => aceptarCompra()}
+        />
+    ];
+
+    const comprar = () => {
         if (isLoged) {
-            alert(product.description)
+            openModal()
         }else{
             history.push('/register')
         }
     }
 
+    const aceptarCompra = () => {
+        addToChart(product);
+        closeModal();
+    }
+
     return (
         <Container animate={animate}>
+            <Dialog
+                title="Agregar a compras?"
+                actions={actions}
+                modal={true}
+                open={modal}
+            />
             <Paper zDepth={3}>
                 <ProductCode>{`codigo: ${product.code}`}</ProductCode>
                 <ProductImg {...props} />
@@ -36,7 +62,7 @@ const Card = ({...props, product, animate, isLoged, history}) => {
                     <Desc title="pesos">{product.price_args}</Desc>
                 </List>
                 {/*  <p>{card.cardDescription}</p> */}
-                <RaisedButton label={"comprar"} primary onClick={() => comprar(product)}/>
+                <RaisedButton label={"comprar"} primary onClick={() => comprar()}/>
             </Paper>
         </Container>
     )
