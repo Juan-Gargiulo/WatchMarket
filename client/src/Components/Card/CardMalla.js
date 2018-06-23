@@ -8,13 +8,24 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import Dialog from 'material-ui/Dialog';
+import FontIcon from 'material-ui/FontIcon';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import Desc from './Description'
 
+const styles = {
+    buyIcon: {
+		position: 'absolute',
+		right: 0,
+		bottom: 0,
+		marginRight: 20,
+		marginBottom: 20,	
+    }
+}
 
 const Card = ({...props, product, animate, isLoged, history, addToChart, openModal, closeModal, modal}) => {
 
-    const actions = [
+    const actions = product => ([
         <FlatButton
           label="Cancelar"
           primary={true}
@@ -23,9 +34,9 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
         <FlatButton
           label="Comprar"
           primary={true}
-          onClick={() => aceptarCompra()}
+          onClick={() => aceptarCompra(product)}
         />
-    ];
+    ]);
 
     const comprar = () => {
         if (isLoged) {
@@ -35,7 +46,7 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
         }
     }
 
-    const aceptarCompra = () => {
+    const aceptarCompra = product => {
         addToChart(product);
         closeModal();
     }
@@ -44,7 +55,7 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
         <Container animate={animate}>
             <Dialog
                 title="Agregar a compras?"
-                actions={actions}
+                actions={actions(product)}
                 modal={true}
                 open={modal}
             />
@@ -52,17 +63,18 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
                 <ProductCode>{`codigo: ${product.code}`}</ProductCode>
                 <ProductImg {...props} />
                 <List>
-                    <Desc title="desc">{product.description}</Desc>
-                    <Desc title="tipo">{product.type}</Desc>
-                    <Desc title="subtipo">{product.subtype}</Desc>
-                    <Desc title="color">{product.color}</Desc>
-                    <Desc title="largo">{`${product.length} cm`}</Desc>
-                    <Desc title="origen">{product.origin}</Desc>
-                    <Desc title="dolares">{product.price_dolar}</Desc>
-                    <Desc title="pesos">{product.price_args}</Desc>
+                    <Desc title="Desc">{product.description}</Desc>
+                    <Desc title="Tipo">{product.type}</Desc>
+                    <Desc title="Subtipo">{product.subtype}</Desc>
+                    <Desc title="Color">{product.color}</Desc>
+                    <Desc title="Largo">{`${product.length} cm`}</Desc>
+                    <Desc title="Origen">{product.origin}</Desc>
+                    <Desc title="u$s">{product.price_dolar}</Desc>
+                    <Desc title="Pesos">{product.price_args}</Desc>
                 </List>
-                {/*  <p>{card.cardDescription}</p> */}
-                <RaisedButton label={"comprar"} primary onClick={() => comprar()}/>
+                <FloatingActionButton style={styles.buyIcon} mini secondary={true} onClick={() => comprar()}>
+					<FontIcon className="material-icons">add_shopping_cart</FontIcon>
+				</FloatingActionButton>
             </Paper>
         </Container>
     )

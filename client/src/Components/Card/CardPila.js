@@ -7,15 +7,22 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import Dialog from 'material-ui/Dialog';
+import FontIcon from 'material-ui/FontIcon';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import Desc from './Description'
 
-const Card = ({...props, product, animate, history, isLoged, addToChart, openModal, closeModal, modal}) => {
-
-    const aceptarCompra = () => {
-        addToChart(product);
-        closeModal();
+const styles = {
+    buyIcon: {
+		position: 'absolute',
+		right: 0,
+		bottom: 0,
+		marginRight: 20,
+		marginBottom: 20,	
     }
+}
+
+const Card = ({...props, product, animate, history, isLoged, addToChart, openModal, closeModal, modal}) => {
 
     const actions = [
         <FlatButton
@@ -30,7 +37,6 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
         />
     ];
 
-
     const comprar = () => {
         if (isLoged) {
             openModal()
@@ -39,13 +45,19 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
         }
     }
 
+    const aceptarCompra = () => {
+        console.log(product)
+        addToChart(product);
+        closeModal();
+    }
+
     return (
         <Container animate={animate}>
             <Dialog
-                    title="Agregar a compras?"
-                    actions={actions}
-                    modal={true}
-                    open={modal}
+                title="Agregar a compras?"
+                actions={actions}
+                modal={true}
+                open={modal}
             />
             <Paper zDepth={3}>
                 <ProductCode>`{`Codigo: ${product.code}`}</ProductCode>
@@ -60,7 +72,9 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
                         <Desc title="Dolares">{product.price_dolar}</Desc>
                         <Desc title="Pesos">{product.price_args}</Desc>
                     </List>
-                    <RaisedButton label={"comprar"} primary onClick={() => comprar()}/>
+                    <FloatingActionButton style={styles.buyIcon} mini secondary={true} onClick={() => comprar()}>
+					    <FontIcon className="material-icons">add_shopping_cart</FontIcon>
+				    </FloatingActionButton>
             </Paper>
         </Container>
     )

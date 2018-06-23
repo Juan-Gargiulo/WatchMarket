@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: block;
+    position: relative;
     cursor: pointer;
     width: 325px;
     margin-left: 12px;

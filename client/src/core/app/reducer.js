@@ -2,6 +2,7 @@ import * as appActions from "./constants";
 
 const initialState = {
     modal: false,
+    navVisible: false
 };
 
 const appReducer = (state = initialState, action) => {

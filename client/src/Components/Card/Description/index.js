@@ -19,7 +19,7 @@ const Content = styled.div`
 
 export default ({title, children}) => (
     <Content>
-        <Title>{`${title}:`}</Title>
+        <Title>{title}</Title>
         {children}
     </Content>
 );

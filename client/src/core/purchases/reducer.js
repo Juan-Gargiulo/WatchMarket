@@ -7,20 +7,19 @@ const initialState = {
 
 const purchaseReducer = (state = initialState, action) => {
 
-
     switch (action.type) {
         case purchases.ADD_PRODUCT_CART:
-            const productsUpdated = state.products.filter(p => p._id !== action.payload._id).concat(action.payload);
+            const addProducts = state.products.filter(p => p._id !== action.payload._id).concat(action.payload);
             return {
                 ...state,
-                products: productsUpdated
+                products: addProducts
             };
 
         case purchases.REMOVE_PRODUCT_CART:
-            const pilas = state.products.filter(p => p._id === action.payload._id);
+            const removeProducts = state.products.filter(p => p._id !== action.payload._id);
             return {
                 ...state,
-                pilas
+                products: removeProducts
             };
 
         default:
