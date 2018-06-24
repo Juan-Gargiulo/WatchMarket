@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { getProducts } from '../../core/cards/cardsActions'
 import { addToChart, removeFromChart } from '../../core/purchases/actions'
 import { openModal, closeModal } from '../../core/app/actions'
-import Dialog from 'material-ui/Dialog';
-import FlatButton from "material-ui/FlatButton";
+import { red500 } from 'material-ui/styles/colors';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -19,7 +18,6 @@ import { productTypes } from "../../core/constants"
 import PageTitle from '../../Components/layout/PageTitle'
 import ShoppingCart from '../../Components/ShoppingCart'
 
-import { COLOR } from '../../common/colors'
 import { Container, GalleryCont } from './style.js'
 
 import { Link } from 'react-router-dom'
@@ -40,35 +38,19 @@ const Gallery = ({
 	modal
 }) => {
 
-    const actions = [
-        <FlatButton
-          label="Cancelar"
-          primary={true}
-          onClick={closeModal}
-        />,
-        <FlatButton
-          label="Comprar"
-          primary={true}
-          onClick={() => alert('ss')}
-        />
-    ];
-
 	return (
 		<Container {...this.props}>
-			<Dialog
-				title="Agregar a compras?"
-				actions={actions}
-				modal={true}
-				open={modal}
-			/>
 			{
 				productType === productTypes.MALLAS ?
-					isAdmin && <MallasNavBar /> :
-					isAdmin && <PilasNavBar />
+					<MallasNavBar /> :
+					<PilasNavBar />
 			}
 			{
 				purchases.length > 0 &&
-				<ShoppingCart purchases={purchases} removeFromCart={removeFromCart}/>
+				<ShoppingCart 
+					purchases={purchases} 
+					user={user}
+					removeFromCart={removeFromCart}/>
 			}
 
 			<GalleryCont >
@@ -155,14 +137,14 @@ const enchanced = compose(
 		}),
 		dispatch => ({
 			getProducts: productType => dispatch(getProducts(productType)),
-			addToChart: product => dispatch(addToChart(product)),
 			removeFromCart: product => dispatch(removeFromChart(product)),
 			openModal: () => dispatch(openModal()),
-			closeModal: () => dispatch(closeModal())
+			closeModal: () => dispatch(closeModal()),
+			addToChart: product => dispatch(addToChart(product)),
 		})
 	),
 	withProps({
-		spinnerColor: COLOR.primaryColor,
+		spinnerColor: red500,
 		spinnerthickness: 15,
 		spinnerSize: 100
 	}),

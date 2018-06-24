@@ -8,6 +8,8 @@ import Toggle from "material-ui/Toggle";
 
 import { Row, Col } from "react-grid-system";
 
+import { Container } from '../../Gallery/style'
+
 import Paper from "material-ui/Paper";
 
 import { post, get, put } from "axios";
@@ -15,7 +17,9 @@ import { post, get, put } from "axios";
 const styles = {
   paper: {
     padding: 30,
-    margin: 15
+    margin: 15,
+    overflowY: 'auto',
+    height: '100vh'
   },
   toggleContainer: {
     width: 50,
@@ -119,12 +123,13 @@ class FormMallas extends Component {
 
   render() {
     return (
+      <Container>
       <form>
         <Row>
           <Col sm={3} />
-          <Col xs={12} sm={6}>
+          <Col xs={12} sm={6 }>
             <Paper style={styles.paper}>
-              <h1>Alta Mallas</h1>
+              <h1>Alta-Edicion Mallas</h1>
               <TextField
                 name="code"
                 hintText="Codigo"
@@ -270,6 +275,7 @@ class FormMallas extends Component {
           <Col sm={3} />
         </Row>
       </form>
+      </Container>
     );
   }
 }

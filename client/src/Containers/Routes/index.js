@@ -26,7 +26,7 @@ const routes = [
   {
     exact: true,
     path: paths.GALLERY,
-    render: props => <Layout component={Gallery} {...props} />
+    render: props => <Layout component={Gallery} navVisible {...props} />
   },
   /*   {
     path: paths.CARD_DETAIL,
@@ -34,7 +34,7 @@ const routes = [
   }, */
   {
     path: paths.LOGIN,
-    render: props => <Layout component={Login} {...props} />
+    render: props => <Layout component={Login} navVisible={false} {...props} />
   },
   {
     path: paths.REGISTER,

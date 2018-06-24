@@ -40,7 +40,8 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
 
     const comprar = () => {
         if (isLoged) {
-            openModal()
+            addToChart(product);
+            // openModal()
         }else{
             history.push('/register')
         }

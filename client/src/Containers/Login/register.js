@@ -61,7 +61,13 @@ class Register extends Component {
 
   render() {
     const styles = {
-      container: { display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center", height: 600 },
+      container: { 
+        display: "flex", 
+        flexDirection: 'column', 
+        justifyContent: "center", 
+        alignItems: "center", 
+        width: '100%', 
+      },
       registerBox: { border: "1px solid grey", padding: "10px 10px 10px 10px" }
     };
 

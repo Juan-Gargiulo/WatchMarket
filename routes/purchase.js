@@ -6,8 +6,8 @@ const Purchase = require('../models/purchase')
 router.post('/', (req,res) => {
 
   const purchase = new Purchase({
-    buyer: req.body.buyer,
-    mallas: req.body.mallas,
+    user: req.body.user,
+    products: req.body.products,
     comment: req.body.comment
   })
 
@@ -17,12 +17,12 @@ router.post('/', (req,res) => {
 
 });
 
+
+
 router.get("/", (req, res, next) => {
   
   Purchase.find({})
-    .populate('buyer')
-    .populate('mallas')
-    .populate('Pila')
+    .populate('user')
     .exec( (err, purchases) => {
       if (err) res.status(500).json(err) 
 

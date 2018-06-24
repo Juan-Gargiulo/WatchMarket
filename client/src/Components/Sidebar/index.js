@@ -13,7 +13,7 @@ import RadioGroup from "../controls/Filter";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 
-const PilasFilters = ({ handleChangeSelect, filters }, ...props) => {
+const PilasFilters = ({ handleChangeSelect, filters, ...props}) => {
   return (
     <div>
       <SelectField
@@ -111,7 +111,7 @@ const PilasFilters = ({ handleChangeSelect, filters }, ...props) => {
   );
 };
 
-const MallasFilters = ({ handleChangeSelect, filters }, ...props) => {
+const MallasFilters = ({ handleChangeSelect, filters, ...props}) => {
   return (
     <div>
       <SelectField
@@ -205,7 +205,8 @@ const enchanced = compose(
   connect(
     state => ({
       productType: state.products.productType,
-      filters: state.products.filter
+      filters: state.products.filter,
+      navVisible: state.app.navVisible
     }),
     dispatch => ({
       filterFn: filter => dispatch(setProductFilter(filter)),

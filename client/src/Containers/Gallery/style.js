@@ -5,6 +5,8 @@ export const Container = styled.div`
     width: ${props => props.navVisible ? "calc(100% - 300px)" : "100%"};
     height: calc(100vh - 60px);
     background-color: ${COLOR.backgroudColor};
+    overflow-y: auto;
+    overflow-x: hidden;
 `
 
 export const GalleryCont = styled.div`
@@ -15,10 +17,11 @@ export const GalleryCont = styled.div`
   justify-content: center;
   align-items: start;
   align-content: start;
+  margin-bottom: 100px;
 
 `
 
 export const Content = styled.div`
-  diplay: block;
+  display: block;
   width: 80%;
 `

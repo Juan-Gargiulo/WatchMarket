@@ -35,6 +35,12 @@ class Login extends Component {
     this.props.login(this.state.user);
   };
 
+  handleKeyPress = (event) => {
+    if(event.key == 'Enter'){
+      this.props.login(this.state.user);
+    }
+  }
+
   render() {
     //const isLoged = () => JSON.stringify(this.props.user) !== "{}";
 
@@ -57,7 +63,7 @@ class Login extends Component {
           {this.props.user && <Redirect to="/" />}
           <TextField name="email" hintText="usuario@email.com" onChange={this.handleTextChange} />
           <br />
-          <TextField name="password" hintText="password" type="password" onChange={this.handleTextChange} />
+          <TextField name="password" hintText="password" type="password" onChange={this.handleTextChange} onKeyPress={this.handleKeyPress}/>
           <br />
           <br />
           <RaisedButton label="Login" primary onClick={this.handleLogin} />

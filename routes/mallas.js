@@ -3,9 +3,19 @@ var router = express.Router();
 var cloudinaryConfig = require("../config/cloudinaryCong.json");
 var Cloudinary = require("cloudinary");
 var multer = require("multer");
-var upload = multer();
-
 Cloudinary.config(cloudinaryConfig);
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+var upload = multer({storage: storage});
+
 
 const malla = require("../models/malla");
 

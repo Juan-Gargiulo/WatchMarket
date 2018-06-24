@@ -9,14 +9,15 @@ const purchaseReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case purchases.ADD_PRODUCT_CART:
-            const addProducts = state.products.filter(p => p._id !== action.payload._id).concat(action.payload);
+            console.log(action.payload.code)
+            const addProducts = state.products.filter(p => p.code !== action.payload.code).concat(action.payload);
             return {
                 ...state,
                 products: addProducts
             };
 
         case purchases.REMOVE_PRODUCT_CART:
-            const removeProducts = state.products.filter(p => p._id !== action.payload._id);
+            const removeProducts = state.products.filter(p => p.code !== action.payload.code);
             return {
                 ...state,
                 products: removeProducts

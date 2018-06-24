@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var purchaseSchema = new Schema({
-  buyer: { type: Schema.Types.ObjectId, ref: 'User' },
-  mallas: [{ type: Schema.Types.ObjectId, ref: 'mallas' }],
-  pilas: [{ type: Schema.Types.ObjectId, ref: 'Pila' }],
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  products: { type: {} },
   comment: {  type: String }
 }, {timestamps: true});
 

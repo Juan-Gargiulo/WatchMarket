@@ -6,30 +6,26 @@ import Sidebar from "../../Components/Sidebar";
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
   height: 100vh;
   display: block;
-  flex-direction: column;
   overflow: hidden;
+  overflow-x: hidden;
 `;
 
 export const Body = styled.div`
-  flex: 1 1 auto;
-  height: 100%;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: row;
+  display: inline;
+  overflow-y: hidden;
 `;
 
-const Layout = ({ component: Component, ...props }) => (
-  <Container>
+const Layout = ({ component: Component, ...props }) => {
+  return <Container>
     <Header {...props} />
     <Body>
-      <Sidebar navVisible={true} {...props} />
-      <div style={{ flex: 1 }}>
-        <Component {...props} />
-      </div>
+      <Sidebar {...props} />
+      <Component {...props}/>
     </Body>
   </Container>
-);
+};
 
 export default Layout;

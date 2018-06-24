@@ -1,10 +1,10 @@
 import React from 'react';
+import styled from 'styled-components'
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
 import { withRouter } from 'react-router'
 import { Container, ProductImg, ProductCode } from './styles'
 import Paper from 'material-ui/Paper';
-import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import Dialog from 'material-ui/Dialog';
 import FontIcon from 'material-ui/FontIcon';
@@ -18,7 +18,7 @@ const styles = {
 		right: 0,
 		bottom: 0,
 		marginRight: 20,
-		marginBottom: 20,	
+        marginBottom: 20,	
     }
 }
 
@@ -33,7 +33,7 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
         <FlatButton
           label="Comprar"
           primary={true}
-          onClick={() => aceptarCompra()}
+          onClick={aceptarCompra}
         />
     ];
 
@@ -46,8 +46,7 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
     }
 
     const aceptarCompra = () => {
-        console.log(product)
-        addToChart(product);
+        addToChart();
         closeModal();
     }
 
@@ -59,8 +58,8 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
                 modal={true}
                 open={modal}
             />
-            <Paper zDepth={3}>
-                <ProductCode>`{`Codigo: ${product.code}`}</ProductCode>
+            <Paper>
+                <ProductCode>{product.code}</ProductCode>
                 <ProductImg {...props} />
                     <List>
                         <Desc title="Desc.">{product.description}</Desc>
@@ -72,7 +71,7 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
                         <Desc title="Dolares">{product.price_dolar}</Desc>
                         <Desc title="Pesos">{product.price_args}</Desc>
                     </List>
-                    <FloatingActionButton style={styles.buyIcon} mini secondary={true} onClick={() => comprar()}>
+                    <FloatingActionButton zDepth={5} style={styles.buyIcon} mini secondary={true} onClick={() => addToChart(product)}>
 					    <FontIcon className="material-icons">add_shopping_cart</FontIcon>
 				    </FloatingActionButton>
             </Paper>

@@ -7,3 +7,7 @@ export const openModal = () => {
 export const closeModal = () => {
     return { type: appActions.APP_CLOSE_MODAL };
 }
+
+export const switchSidebar = () => {
+    return { type: appActions.APP_SWITCH_SIDEBAR }
+}

@@ -13,6 +13,9 @@ const appReducer = (state = initialState, action) => {
         case appActions.APP_CLOSE_MODAL:
             return { ...state, modal: false };
 
+        case appActions.APP_SWITCH_SIDEBAR:
+            return { state, navVisible: !state.navVisible }
+
         default:
             return state;
     }
