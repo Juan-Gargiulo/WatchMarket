@@ -31,7 +31,6 @@ export default class ShoppingCart extends Component {
     }
 
     confirmPurchase = (comment) => {
-        alert('compro')
         const purchase = {
 			products: this.props.purchases,
 			user: this.props.user,

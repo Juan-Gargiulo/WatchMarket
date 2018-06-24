@@ -9,7 +9,6 @@ const purchaseReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case purchases.ADD_PRODUCT_CART:
-            console.log(action.payload.code)
             const addProducts = state.products.filter(p => p.code !== action.payload.code).concat(action.payload);
             return {
                 ...state,
