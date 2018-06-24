@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../../core/cards/cardsActions'
 import { addToChart, removeFromChart } from '../../core/purchases/actions'
-import { openModal, closeModal } from '../../core/app/actions'
+import { openModal, closeModal, changeSnackBarMessage, launchSnackbar } from '../../core/app/actions'
 import { red500 } from 'material-ui/styles/colors';
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -13,6 +13,8 @@ import withLoading from '../Hocs/LoadingHoc'
 import { productSelected } from '../../core/cards/cardSelectors'
 import CardMalla from '../../Components/Card/CardMalla'
 import CardPila from '../../Components/Card/CardPila'
+import Snackbar from '../../Components/Snackbar'
+
 import { productTypes } from "../../core/constants"
 
 import PageTitle from '../../Components/layout/PageTitle'
@@ -30,33 +32,42 @@ const Gallery = ({
 	productType,
 	user,
 	isLoged,
-	isAdmin,
 	addToChart,
 	removeFromCart,
 	openModal,
 	closeModal,
+	launchSnackbar,
 	modal
 }) => {
 
 	return (
 		<Container {...this.props}>
-			{
-				productType === productTypes.MALLAS ?
-					<MallasNavBar /> :
-					<PilasNavBar />
-			}
+			
 			{
 				purchases.length > 0 &&
 				<ShoppingCart 
 					purchases={purchases} 
 					user={user}
-					removeFromCart={removeFromCart}/>
+					removeFromCart={removeFromCart}
+					launchSnackbar={launchSnackbar}
+				/>
 			}
 
 			<GalleryCont >
-				{renderProducts(products, productType, user, isLoged, addToChart, openModal, closeModal, modal)}
+				{
+				renderProducts(
+					products, 
+					productType, 
+					user, 
+					isLoged, 
+					addToChart, 
+					openModal, 
+					closeModal, 
+					modal,
+					launchSnackbar
+				)}
 			</GalleryCont>
-
+			<Snackbar/>
 		</Container>
 	)
 }
@@ -71,7 +82,8 @@ const renderProducts = (
 	addToChart, 
 	openModal, 
 	closeModal, 
-	modal
+	modal,
+	launchSnackbar
 ) => products.map((product, key) => {
 	switch (productType) {
 		case productTypes.MALLAS:
@@ -96,31 +108,13 @@ const renderProducts = (
 				openModal={openModal}
 				closeModal={closeModal}
 				modal={modal}
+				launchSnackbar={launchSnackbar}
 				animate />
 			break;
 		default:
 			break;
 	}
 })
-
-const MallasNavBar = props => (
-	<div>
-		<PageTitle title={'Mallas'} />
-		<Link to={"/mallas"}>
-			<RaisedButton label="Agregar / Editar" primary style={{ marginLeft: "20px" }} />
-		</Link>
-	</div>
-)
-
-const PilasNavBar = props => (
-	<div>
-		<PageTitle title={'Pilas'} />
-		<Link to={"/pilas"}>
-			<RaisedButton label="Agregar / Editar" primary style={{ marginLeft: "20px" }} />
-		</Link>
-	</div>
-)
-
 
 const enchanced = compose(
 	connect(
@@ -141,6 +135,10 @@ const enchanced = compose(
 			openModal: () => dispatch(openModal()),
 			closeModal: () => dispatch(closeModal()),
 			addToChart: product => dispatch(addToChart(product)),
+			launchSnackbar: message => {
+				dispatch(changeSnackBarMessage(message))
+				dispatch(launchSnackbar())
+			}
 		})
 	),
 	withProps({

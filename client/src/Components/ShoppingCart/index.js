@@ -24,7 +24,6 @@ export default class ShoppingCart extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             open: false,
         };
@@ -35,7 +34,8 @@ export default class ShoppingCart extends Component {
 			products: this.props.purchases,
 			user: this.props.user,
 			comment : ''
-		}
+        }
+        this.props.launchSnackbar('su compra se finalizo con existo')
 		postPurchase(purchase);
     }
 
@@ -62,7 +62,7 @@ export default class ShoppingCart extends Component {
             <List>
                 <Subheader inset={true}>Compras</Subheader>
                 {
-                    purchases && purchases.map(product => (
+                    purchases.map(product => (
                         <ListItem
                             leftAvatar={<Avatar src={product.imgurl} />}
                             rightIcon={<FontIcon onClick={() => removeFromCart(product)} className="material-icons" color="black" hoverColor="red" >delete</FontIcon>}

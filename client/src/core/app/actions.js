@@ -11,3 +11,16 @@ export const closeModal = () => {
 export const switchSidebar = () => {
     return { type: appActions.APP_SWITCH_SIDEBAR }
 }
+
+export const closeSnackBar = () => ({
+    type: appActions.APP_CLOSE_SNACKBAR
+})
+
+export const launchSnackbar = () => ({
+    type: appActions.APP_LAUNCH_SNACKBAR
+})
+
+export const changeSnackBarMessage = payload => ({
+    type: appActions.APP_CHANGE_SNACKBAR_MESSAGE,
+    payload
+})

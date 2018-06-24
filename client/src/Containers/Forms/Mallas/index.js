@@ -124,157 +124,157 @@ class FormMallas extends Component {
   render() {
     return (
       <Container>
-      <form>
-        <Row>
-          <Col sm={3} />
-          <Col xs={12} sm={6 }>
-            <Paper style={styles.paper}>
-              <h1>Alta-Edicion Mallas</h1>
-              <TextField
-                name="code"
-                hintText="Codigo"
-                floatingLabelText="Codigo"
-                floatingLabelFixed
-                fullWidth
-                onChange={this.handleTextChange}
-                onKeyPress={this.handleCode}
-              />
-              <br />
-              <TextField
-                name="price_dolar"
-                fullWidth
-                floatingLabelText="Precio Dolar"
-                hintText="Precio Dolar"
-                floatingLabelFixed
-                type="number"
-                value={this.state.price_dolar}
-                onChange={this.handleTextChange}
-              />
-              <br />
-              <TextField
-                name="price_args"
-                fullWidth
-                floatingLabelText="Precio Pesos"
-                hintText="Precio Pesos"
-                floatingLabelFixed
-                type="number"
-                value={this.state.price_args}
-                onChange={this.handleTextChange}
-              />
-              <br />
-              <TextField
-                name="description"
-                fullWidth
-                floatingLabelText="Descripcion"
-                hintText="Descripcion"
-                floatingLabelFixed
-                multiLine
-                value={this.state.description}
-                onChange={this.handleTextChange}
-              />
-              <br />
-
-              <SelectField
-                fullWidth
-                floatingLabelText="Tipo"
-                value={this.state.filtros.type}
-                onChange={this.handleChangeSelect("type")}
-              >
-                <MenuItem value={"cuero"} primaryText="Cuero" />
-                <MenuItem value={"casio"} primaryText="Casio" />
-                <MenuItem value={"silicona"} primaryText="Silicona" />
-                <MenuItem value={"acero"} primaryText="Acero" />
-              </SelectField>
-              <br />
-
-              {this.state.filtros.type === "cuero" && (
-                <SelectField
-                  floatingLabelText="Subtipo"
-                  value={this.state.filtros.subtype}
-                  onChange={this.handleChangeSelect("subtype")}
-                >
-                  <MenuItem value={"planas"} primaryText="Planas" />
-                  <MenuItem value={"anchas"} primaryText="Anchas" />
-                  <MenuItem value={"extralargas"} primaryText="Extralargas" />
-                  <MenuItem value={"especial"} primaryText="Especiales Liquidacion" />
-                </SelectField>
-              )}
-
-              <SelectField
-                fullWidth
-                floatingLabelText="Medida"
-                value={this.state.filtros.length}
-                onChange={this.handleChangeSelect("length")}
-              >
-                <MenuItem value={0} primaryText="todas" />
-                <MenuItem value={10} primaryText="10 mm" />
-                <MenuItem value={12} primaryText="12 mm" />
-                <MenuItem value={14} primaryText="14 mm" />
-                <MenuItem value={16} primaryText="16 mm" />
-                <MenuItem value={18} primaryText="18 mm" />
-                <MenuItem value={20} primaryText="20 mm" />
-                <MenuItem value={22} primaryText="22 mm" />
-                <MenuItem value={24} primaryText="24 mm" />
-                <MenuItem value={26} primaryText="26 mm" />
-                <MenuItem value={28} primaryText="28 mm" />
-                <MenuItem value={30} primaryText="30 mm" />
-                <MenuItem value={32} primaryText="32 mm" />
-                <MenuItem value={34} primaryText="34 mm" />
-                <MenuItem value={38} primaryText="38 mm" />
-              </SelectField>
-              <br />
-
-              <SelectField
-                fullWidth
-                floatingLabelText="Color"
-                value={this.state.filtros.color}
-                onChange={this.handleChangeSelect("color")}
-              >
-                <MenuItem value={0} primaryText="todos" />
-                <MenuItem value={"negro"} primaryText="negro" />
-                <MenuItem value={"gris"} primaryText="gris" />
-                <MenuItem value={"marron oscuro"} primaryText="marron oscuro" />
-                <MenuItem value={"marron claro"} primaryText="marron claro" />
-                <MenuItem value={"marron tostado"} primaryText="marron tostado" />
-                <MenuItem value={"blanco"} primaryText="blanco" />
-                <MenuItem value={"blanco"} primaryText="blanco" />
-                <MenuItem value={"rosa"} primaryText="rosa" />
-              </SelectField>
-              <br />
-
-              <SelectField
-                fullWidth
-                floatingLabelText="Origen"
-                value={this.state.filtros.origin}
-                onChange={this.handleChangeSelect("origin")}
-              >
-                <MenuItem value={0} primaryText="todas" />
-                <MenuItem value={"suiza"} primaryText="Suiza" />
-                <MenuItem value={"japon"} primaryText="Japon" />
-                <MenuItem value={"china"} primaryText="China" />
-              </SelectField>
-
-              <div style={styles.toggleContainer}>
-                <Toggle
-                  label="Activo"
-                  toggled={this.state.active}
-                  disabled={!this.state.isUpdate}
-                  onToggle={(e, c) => this.setState({ active: c })}
+        <form>
+          <Row>
+            <Col sm={3} />
+            <Col xs={12} sm={6}>
+              <Paper style={styles.paper}>
+                <h1>Alta-Edicion Mallas</h1>
+                <TextField
+                  name="code"
+                  hintText="Codigo"
+                  floatingLabelText="Codigo"
+                  floatingLabelFixed
+                  fullWidth
+                  onChange={this.handleTextChange}
+                  onKeyPress={this.handleCode}
                 />
-              </div>
-              <br />
+                <br />
+                <TextField
+                  name="price_dolar"
+                  fullWidth
+                  floatingLabelText="Precio Dolar"
+                  hintText="Precio Dolar"
+                  floatingLabelFixed
+                  type="number"
+                  value={this.state.price_dolar}
+                  onChange={this.handleTextChange}
+                />
+                <br />
+                <TextField
+                  name="price_args"
+                  fullWidth
+                  floatingLabelText="Precio Pesos"
+                  hintText="Precio Pesos"
+                  floatingLabelFixed
+                  type="number"
+                  value={this.state.price_args}
+                  onChange={this.handleTextChange}
+                />
+                <br />
+                <TextField
+                  name="description"
+                  fullWidth
+                  floatingLabelText="Descripcion"
+                  hintText="Descripcion"
+                  floatingLabelFixed
+                  multiLine
+                  value={this.state.description}
+                  onChange={this.handleTextChange}
+                />
+                <br />
 
-              <input type="file" name="images" onChange={this.onChangeFile} />
-              <br />
+                <SelectField
+                  fullWidth
+                  floatingLabelText="Tipo"
+                  value={this.state.filtros.type}
+                  onChange={this.handleChangeSelect("type")}
+                >
+                  <MenuItem value={"cuero"} primaryText="Cuero" />
+                  <MenuItem value={"casio"} primaryText="Casio" />
+                  <MenuItem value={"silicona"} primaryText="Silicona" />
+                  <MenuItem value={"acero"} primaryText="Acero" />
+                </SelectField>
+                <br />
 
-              <div>
-                <RaisedButton style={{ left: 0 }} label="Guardar" primary={true} onClick={this.onFormSubmit} />
-              </div>
-            </Paper>
-          </Col>
-          <Col sm={3} />
-        </Row>
-      </form>
+                {this.state.filtros.type === "cuero" && (
+                  <SelectField
+                    floatingLabelText="Subtipo"
+                    value={this.state.filtros.subtype}
+                    onChange={this.handleChangeSelect("subtype")}
+                  >
+                    <MenuItem value={"planas"} primaryText="Planas" />
+                    <MenuItem value={"anchas"} primaryText="Anchas" />
+                    <MenuItem value={"extralargas"} primaryText="Extralargas" />
+                    <MenuItem value={"especial"} primaryText="Especiales Liquidacion" />
+                  </SelectField>
+                )}
+
+                <SelectField
+                  fullWidth
+                  floatingLabelText="Medida"
+                  value={this.state.filtros.length}
+                  onChange={this.handleChangeSelect("length")}
+                >
+                  <MenuItem value={0} primaryText="todas" />
+                  <MenuItem value={10} primaryText="10 mm" />
+                  <MenuItem value={12} primaryText="12 mm" />
+                  <MenuItem value={14} primaryText="14 mm" />
+                  <MenuItem value={16} primaryText="16 mm" />
+                  <MenuItem value={18} primaryText="18 mm" />
+                  <MenuItem value={20} primaryText="20 mm" />
+                  <MenuItem value={22} primaryText="22 mm" />
+                  <MenuItem value={24} primaryText="24 mm" />
+                  <MenuItem value={26} primaryText="26 mm" />
+                  <MenuItem value={28} primaryText="28 mm" />
+                  <MenuItem value={30} primaryText="30 mm" />
+                  <MenuItem value={32} primaryText="32 mm" />
+                  <MenuItem value={34} primaryText="34 mm" />
+                  <MenuItem value={38} primaryText="38 mm" />
+                </SelectField>
+                <br />
+
+                <SelectField
+                  fullWidth
+                  floatingLabelText="Color"
+                  value={this.state.filtros.color}
+                  onChange={this.handleChangeSelect("color")}
+                >
+                  <MenuItem value={0} primaryText="todos" />
+                  <MenuItem value={"negro"} primaryText="negro" />
+                  <MenuItem value={"gris"} primaryText="gris" />
+                  <MenuItem value={"marron oscuro"} primaryText="marron oscuro" />
+                  <MenuItem value={"marron claro"} primaryText="marron claro" />
+                  <MenuItem value={"marron tostado"} primaryText="marron tostado" />
+                  <MenuItem value={"blanco"} primaryText="blanco" />
+                  <MenuItem value={"blanco"} primaryText="blanco" />
+                  <MenuItem value={"rosa"} primaryText="rosa" />
+                </SelectField>
+                <br />
+
+                <SelectField
+                  fullWidth
+                  floatingLabelText="Origen"
+                  value={this.state.filtros.origin}
+                  onChange={this.handleChangeSelect("origin")}
+                >
+                  <MenuItem value={0} primaryText="todas" />
+                  <MenuItem value={"suiza"} primaryText="Suiza" />
+                  <MenuItem value={"japon"} primaryText="Japon" />
+                  <MenuItem value={"china"} primaryText="China" />
+                </SelectField>
+
+                <div style={styles.toggleContainer}>
+                  <Toggle
+                    label="Activo"
+                    toggled={this.state.active}
+                    disabled={!this.state.isUpdate}
+                    onToggle={(e, c) => this.setState({ active: c })}
+                  />
+                </div>
+                <br />
+
+                <input type="file" name="images" onChange={this.onChangeFile} />
+                <br />
+
+                <div>
+                  <RaisedButton style={{ left: 0 }} label="Guardar" primary={true} onClick={this.onFormSubmit} />
+                </div>
+              </Paper>
+            </Col>
+            <Col sm={3} />
+          </Row>
+        </form>
       </Container>
     );
   }

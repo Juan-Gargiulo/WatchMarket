@@ -76,7 +76,7 @@ class Register extends Component {
     return (
       <div style={styles.container}>
         <div style={styles.registerBox}>
-          <h3>Registrarme</h3>
+          <h3>Para comprar productos complete cree un usuario</h3>
           <TextField
             name="email"
             hintText="usuario@mail.com "
@@ -109,10 +109,10 @@ class Register extends Component {
           />
           <br />
           <br />
-          <RaisedButton onClick={this.handleRegister} label="Registrarse" primary onChange={this.handleLogin} />
+          <RaisedButton onClick={this.handleRegister} label="Registrarse" onChange={this.handleLogin} />
           <div>
             <br />
-            <p>Ya posees una cuenta?</p>
+            <p style={{color: 'green'}}>Ya posees una cuenta?</p>
           <NavLink to={'/login'}><RaisedButton>Ingresar</RaisedButton></NavLink>  
         </div> 
         </div>
