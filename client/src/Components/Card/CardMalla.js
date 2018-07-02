@@ -23,7 +23,7 @@ const styles = {
     }
 }
 
-const Card = ({...props, product, animate, isLoged, history, addToChart, openModal, closeModal, modal}) => {
+const Card = ({...props, product, animate, isLoged, history, addToChart, openModal, closeModal, modal,launchSnackbar}) => {
 
     const actions = product => ([
         <FlatButton
@@ -41,7 +41,7 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
     const comprar = () => {
         if (isLoged) {
             addToChart(product);
-            // openModal()
+            launchSnackbar('Se agrego el producto al carrito de compras.')
         }else{
             history.push('/register')
         }

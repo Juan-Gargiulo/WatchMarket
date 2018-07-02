@@ -76,7 +76,7 @@ class Register extends Component {
     return (
       <div style={styles.container}>
         <div style={styles.registerBox}>
-          <h3>Para comprar productos complete cree un usuario</h3>
+          <h3>Para comprar productos debe registrarse</h3>
           <TextField
             name="email"
             hintText="usuario@mail.com "

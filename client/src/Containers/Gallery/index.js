@@ -95,6 +95,7 @@ const renderProducts = (
 				addToChart={addToChart}
 				openModal={openModal}
 				closeModal={closeModal}
+				launchSnackbar={launchSnackbar}
 				modal={modal}
 				animate />
 			break;

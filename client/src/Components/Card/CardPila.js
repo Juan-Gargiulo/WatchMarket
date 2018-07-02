@@ -21,7 +21,7 @@ const styles = {
     }
 }
 
-const Card = ({...props, product, animate, history, isLoged, addToChart, openModal, closeModal, modal, launchSnackbar}) => {
+const Card = ({...props, product, animate, history, isLoged, addToChart, closeModal, modal, launchSnackbar}) => {
 
     const actions = [
         <FlatButton
@@ -38,7 +38,8 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
 
     const comprar = () => {
         if (isLoged) {
-            openModal()
+            addToChart(product);
+            launchSnackbar('Se agrego el producto al carrito de compras.')
         }else{
             history.push('/register')
         }
@@ -71,7 +72,7 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, openMod
                         <Desc title="Dolares">{product.price_dolar}</Desc>
                         <Desc title="Pesos">{product.price_args}</Desc>
                     </List>
-                    <FloatingActionButton zDepth={5} style={styles.buyIcon} mini secondary={true} onClick={() => { launchSnackbar('el producto se agrego al carrito'); addToChart(product)}}>
+                    <FloatingActionButton zDepth={5} style={styles.buyIcon} mini secondary={true} onClick={() => comprar()}>
 					    <FontIcon className="material-icons">add_shopping_cart</FontIcon>
 				    </FloatingActionButton>
             </Paper>
