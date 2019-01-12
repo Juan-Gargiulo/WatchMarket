@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { COLOR } from "../../common/colors";
 import RaisedButton from "material-ui/RaisedButton";
-import FlatButton from 'material-ui/FlatButton';
+import FlatButton from "material-ui/FlatButton";
 
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-import { switchSidebar } from '../../core/app/actions'
-import FontIcon from 'material-ui/FontIcon';
-import { red500 } from 'material-ui/styles/colors';
-
+import { switchSidebar } from "../../core/app/actions";
+import FontIcon from "material-ui/FontIcon";
+import { red500 } from "material-ui/styles/colors";
 
 export const Container = styled.div`
   display: flex;
@@ -28,13 +27,27 @@ export const Logo = styled.img.attrs({
   width: 35px;
 `;
 
-const Header = ({ switchSidebar, user }) => {
+const Header = ({ switchSidebar, navVisible, user }) => {
   return (
     <Container primary>
-      <FontIcon className="material-icons" onClick={switchSidebar} color={red500}>menu</FontIcon>
-      {<Link to="/"><FlatButton secondary>Mercado</FlatButton></Link>}
-      {user && user.admin && <Link to="/pilas"><FlatButton secondary>Pilas</FlatButton></Link>}
-      {user && user.admin && <Link to="/mallas"><FlatButton secondary>Mallas</FlatButton></Link>}
+      <FontIcon className="material-icons" onClick={switchSidebar} color={"white"}>
+        {navVisible ? "close" : "menu"}
+      </FontIcon>
+      {
+        <Link to="/">
+          <FlatButton secondary>Galleria</FlatButton>
+        </Link>
+      }
+      {user && user.admin && (
+        <Link to="/pilas">
+          <FlatButton secondary>Alta Pilas</FlatButton>
+        </Link>
+      )}
+      {user && user.admin && (
+        <Link to="/mallas">
+          <FlatButton secondary>Alta Mallas</FlatButton>
+        </Link>
+      )}
       {user && <RaisedButton label="salir" primary style={{ marginLeft: "auto" }} />}
     </Container>
   );
@@ -43,7 +56,8 @@ const Header = ({ switchSidebar, user }) => {
 export default connect(
   state => ({
     user: state.user.user,
-    purchases: state.purchases.products
+    purchases: state.purchases.products,
+    navVisible: state.app.navVisible
   }),
   dispatch => ({
     switchSidebar: () => dispatch(switchSidebar())

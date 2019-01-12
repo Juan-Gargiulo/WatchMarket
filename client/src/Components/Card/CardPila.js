@@ -72,7 +72,7 @@ const Card = ({...props, product, animate, history, isLoged, addToChart, closeMo
                         <Desc title="Dolares">{product.price_dolar}</Desc>
                         <Desc title="Pesos">{product.price_args}</Desc>
                     </List>
-                    <FloatingActionButton zDepth={5} style={styles.buyIcon} mini secondary={true} onClick={() => comprar()}>
+                    <FloatingActionButton zDepth={2} style={styles.buyIcon} mini secondary={true} onClick={() => comprar()}>
 					    <FontIcon className="material-icons">add_shopping_cart</FontIcon>
 				    </FloatingActionButton>
             </Paper>

@@ -16,7 +16,7 @@ export const stylesDefautl = {
 const RadioGroup = ({
   ...props, radioSelected,
   styles=stylesDefautl,
-  title='Categoria'
+  title='Productos'
 }) => (
   <div style={styles.container}>
     <NavLink to={'/'}><span style={styles.span}>{title}</span></NavLink>

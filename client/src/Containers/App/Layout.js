@@ -18,14 +18,24 @@ export const Body = styled.div`
   overflow-y: hidden;
 `;
 
+const Shadow = styled.div`
+  background-color: grey;
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
+
 const Layout = ({ component: Component, ...props }) => {
-  return <Container>
-    <Header {...props} />
-    <Body>
-      <Sidebar {...props} />
-      <Component {...props}/>
-    </Body>
-  </Container>
+  return (
+    <Container>
+      <Header {...props} />
+      <Body>
+        <Sidebar {...props} />
+        <Shadow />
+        <Component {...props} />
+      </Body>
+    </Container>
+  );
 };
 
 export default Layout;
