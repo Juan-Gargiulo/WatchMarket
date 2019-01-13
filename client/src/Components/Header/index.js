@@ -40,15 +40,26 @@ const Header = ({ switchSidebar, navVisible, user }) => {
       }
       {user && user.admin && (
         <Link to="/pilas">
-          <FlatButton secondary>Alta Pilas</FlatButton>
+          <FlatButton secondary>Alta Pilas |</FlatButton>
         </Link>
       )}
       {user && user.admin && (
         <Link to="/mallas">
-          <FlatButton secondary>Alta Mallas</FlatButton>
+          <FlatButton secondary>Alta Mallas |</FlatButton>
         </Link>
       )}
-      {user && <RaisedButton label="salir" primary style={{ marginLeft: "auto" }} />}
+      {user && user.admin && (
+        <Link to="/compras">
+          <FlatButton secondary>Compras</FlatButton>
+        </Link>
+      )}
+      {user ? (
+        <RaisedButton label="salir" primary style={{ marginLeft: "auto" }} />
+      ) : (
+        <Link to="/login" style={{ marginLeft: "auto" }}>
+          <RaisedButton label="Login" primary />
+        </Link>
+      )}
     </Container>
   );
 };

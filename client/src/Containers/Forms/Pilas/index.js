@@ -7,12 +7,12 @@ import TextField from "material-ui/TextField";
 import React, { Component } from "react";
 import { Col, Row } from "react-grid-system";
 
-import { Container } from '../../Gallery/style'
+import { Container } from "../../Gallery/style";
 
 const styles = {
   paper: {
     padding: 30,
-    margin: 15,
+    margin: 15
   }
 };
 
@@ -52,7 +52,7 @@ class FormPilas extends Component {
   };
 
   onChangeFile(e) {
-    console.log
+    console.log;
     this.setState({ file: e.target.files[0] });
   }
 
@@ -130,6 +130,7 @@ class FormPilas extends Component {
                   onChange={this.handleTextChange}
                   onKeyPress={this.handleCode}
                 />
+                en caso que el codigo exista podra editar el producto
                 <br />
                 <TextField
                   name="price_dolar"
@@ -164,7 +165,6 @@ class FormPilas extends Component {
                   onChange={this.handleTextChange}
                 />
                 <br />
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Tipo"
@@ -179,7 +179,6 @@ class FormPilas extends Component {
                   <MenuItem value={"acumuladores"} primaryText="acumuladores" />
                 </SelectField>
                 <br />
-
                 {this.state.filtros.type === "acumuladores" && (
                   <SelectField
                     floatingLabelText="Subtipo"
@@ -191,7 +190,6 @@ class FormPilas extends Component {
                     <MenuItem value={"casio"} primaryText="casio" />
                   </SelectField>
                 )}
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Modelo"
@@ -256,7 +254,6 @@ class FormPilas extends Component {
                   <MenuItem value={"CR2450N"} primaryText="CR2450N" />
                 </SelectField>
                 <br />
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Marca"
@@ -268,7 +265,6 @@ class FormPilas extends Component {
                   <MenuItem value={"mimic"} primaryText="Mimic" />
                 </SelectField>
                 <br />
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Origen"
@@ -281,9 +277,7 @@ class FormPilas extends Component {
                 </SelectField>
                 <br />
                 <br />
-
                 <input type="file" name="images" onChange={this.onChangeFile} />
-
                 <RaisedButton label="Guardar" onClick={this.onFormSubmit} primary={true} />
                 {/*  <button type="submit">subir</button> */}
               </Paper>

@@ -3,11 +3,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Gallery from "../Gallery";
-import Detail from "../Detail";
 import FormMallas from "../Forms/Mallas";
 import FormsPilas from "../Forms/Pilas";
 import Login from "../Login";
 import Register from "../Login/register";
+import Compras from "../Forms/Compras";
 
 import Layout from "../App/Layout";
 
@@ -19,7 +19,8 @@ export const paths = {
   FORMMALLAS: "/mallas",
   FORMPILAS: "/pilas",
   LOGIN: "/login",
-  REGISTER: "/register"
+  REGISTER: "/register",
+  PURCHASES: "/compras"
 };
 
 const routes = [
@@ -49,12 +50,20 @@ const routes = [
     render: props => <Layout component={FormsPilas} {...props} />
   },
   {
-    component: () => <h3>No match for this route></h3>
+    path: paths.PURCHASES,
+    render: props => <Layout component={Compras} {...props} />
+  },
+  {
+    component: () => <h3>Esta ruta no existe></h3>
   }
 ];
 
 export const Routes = ({ ...props }) => (
   <Router>
-    <Switch>{routes.map((route, key) => <Route key={key} {...route} />)}</Switch>
+    <Switch>
+      {routes.map((route, key) => (
+        <Route key={key} {...route} />
+      ))}
+    </Switch>
   </Router>
 );

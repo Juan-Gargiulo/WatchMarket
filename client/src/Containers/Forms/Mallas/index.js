@@ -8,7 +8,7 @@ import Toggle from "material-ui/Toggle";
 
 import { Row, Col } from "react-grid-system";
 
-import { Container } from '../../Gallery/style'
+import { Container } from "../../Gallery/style";
 
 import Paper from "material-ui/Paper";
 
@@ -18,8 +18,8 @@ const styles = {
   paper: {
     padding: 30,
     margin: 15,
-    overflowY: 'auto',
-    height: '100vh'
+    overflowY: "auto",
+    height: "100vh"
   },
   toggleContainer: {
     width: 50,
@@ -113,10 +113,8 @@ class FormMallas extends Component {
     };
 
     if (this.state.isUpdate) {
-      console.log("PUT");
       put(`api/mallas/${this.state.code}`, formData, config).then(res => console.log(res));
     } else {
-      console.log("POST");
       post("api/mallas", formData, config).then(res => console.log(res));
     }
   }
@@ -139,6 +137,7 @@ class FormMallas extends Component {
                   onChange={this.handleTextChange}
                   onKeyPress={this.handleCode}
                 />
+                en caso que el codigo exista podra editar el producto
                 <br />
                 <TextField
                   name="price_dolar"
@@ -173,7 +172,6 @@ class FormMallas extends Component {
                   onChange={this.handleTextChange}
                 />
                 <br />
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Tipo"
@@ -186,7 +184,6 @@ class FormMallas extends Component {
                   <MenuItem value={"acero"} primaryText="Acero" />
                 </SelectField>
                 <br />
-
                 {this.state.filtros.type === "cuero" && (
                   <SelectField
                     floatingLabelText="Subtipo"
@@ -199,7 +196,6 @@ class FormMallas extends Component {
                     <MenuItem value={"especial"} primaryText="Especiales Liquidacion" />
                   </SelectField>
                 )}
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Medida"
@@ -223,7 +219,6 @@ class FormMallas extends Component {
                   <MenuItem value={38} primaryText="38 mm" />
                 </SelectField>
                 <br />
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Color"
@@ -241,7 +236,6 @@ class FormMallas extends Component {
                   <MenuItem value={"rosa"} primaryText="rosa" />
                 </SelectField>
                 <br />
-
                 <SelectField
                   fullWidth
                   floatingLabelText="Origen"
@@ -253,7 +247,6 @@ class FormMallas extends Component {
                   <MenuItem value={"japon"} primaryText="Japon" />
                   <MenuItem value={"china"} primaryText="China" />
                 </SelectField>
-
                 <div style={styles.toggleContainer}>
                   <Toggle
                     label="Activo"
@@ -263,10 +256,8 @@ class FormMallas extends Component {
                   />
                 </div>
                 <br />
-
                 <input type="file" name="images" onChange={this.onChangeFile} />
                 <br />
-
                 <div>
                   <RaisedButton style={{ left: 0 }} label="Guardar" primary={true} onClick={this.onFormSubmit} />
                 </div>
