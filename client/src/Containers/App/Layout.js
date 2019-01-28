@@ -20,7 +20,7 @@ export const Body = styled.div`
 
 const Shadow = styled.div`
   background-color: grey;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
 `;

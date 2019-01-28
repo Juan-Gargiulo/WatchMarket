@@ -82,7 +82,6 @@ const renderProducts = (
             closeModal={closeModal}
             launchSnackbar={launchSnackbar}
             modal={modal}
-            animate
           />
         );
         break;
@@ -98,7 +97,6 @@ const renderProducts = (
             closeModal={closeModal}
             modal={modal}
             launchSnackbar={launchSnackbar}
-            animate
           />
         );
         break;
@@ -133,7 +131,7 @@ const enchanced = compose(
     })
   ),
   withProps({
-    spinnerColor: "#C06969",
+    spinnerColor: "#02b875",
     spinnerthickness: 15,
     spinnerSize: 100
   }),

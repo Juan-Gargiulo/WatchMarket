@@ -4,7 +4,6 @@ const router = express.Router();
 const User = require("../models/user");
 
 router.post("/", (req, res) => {
-  
   try {
     const newUser = new User({
       fullName: req.body.fullName,
@@ -27,7 +26,8 @@ router.post("/login", (req, res) => {
     if (err) res.sendStatus(500);
 
     if (!user) {
-      res.status(204).send("No existe el email");
+      res.status(204).json({ error: "No existe el usuario" });
+      return;
     }
 
     user.comparePassword(req.body.password, (err, isMatch) => {
@@ -36,8 +36,10 @@ router.post("/login", (req, res) => {
       console.log(isMatch, "isMatch");
       if (isMatch) {
         res.status(200).json(user);
+        return;
       } else {
         res.status(401).json({ error: "El password es incorrecto" });
+        return;
       }
     });
   });

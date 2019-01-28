@@ -278,8 +278,7 @@ class FormPilas extends Component {
                 <br />
                 <br />
                 <input type="file" name="images" onChange={this.onChangeFile} />
-                <RaisedButton label="Guardar" onClick={this.onFormSubmit} primary={true} />
-                {/*  <button type="submit">subir</button> */}
+                <RaisedButton style={{ marginTop: 20 }} label="Guardar" onClick={this.onFormSubmit} primary={true} />
               </Paper>
             </Col>
             <Col sm={3} />

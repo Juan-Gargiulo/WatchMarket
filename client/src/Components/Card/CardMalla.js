@@ -60,8 +60,8 @@ const Card = ({...props, product, animate, isLoged, history, addToChart, openMod
                 modal={true}
                 open={modal}
             />
-            <Paper zDepth={3}>
-                <ProductCode>{`codigo: ${product.code}`}</ProductCode>
+            <Paper zDepth={2}>
+                {/* <ProductCode>{`codigo: ${product.code}`}</ProductCode> */}
                 <ProductImg {...props} />
                 <List>
                     <Desc title="Desc">{product.description}</Desc>

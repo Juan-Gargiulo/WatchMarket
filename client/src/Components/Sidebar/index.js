@@ -13,7 +13,7 @@ import RadioGroup from "../controls/Filter";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 
-const PilasFilters = ({ handleChangeSelect, filters, ...props}) => {
+const PilasFilters = ({ handleChangeSelect, filters, ...props }) => {
   return (
     <div>
       <SelectField
@@ -111,7 +111,7 @@ const PilasFilters = ({ handleChangeSelect, filters, ...props}) => {
   );
 };
 
-const MallasFilters = ({ handleChangeSelect, filters, ...props}) => {
+const MallasFilters = ({ handleChangeSelect, filters, ...props }) => {
   return (
     <div>
       <SelectField
@@ -158,7 +158,6 @@ const MallasFilters = ({ handleChangeSelect, filters, ...props}) => {
     </div>
   );
 };
-
 
 class Sidebar extends React.Component {
   constructor(props) {
